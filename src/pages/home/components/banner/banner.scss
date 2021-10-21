@@ -1,0 +1,19 @@
+.banner {
+  height: 500px;
+  border: 1px solid red;
+  .banner-swiper {
+    height: 100%
+  }
+  .tab-box {
+    bottom: 60px
+  }
+  .tab-item {
+    min-width: 100px;
+    padding:0 20px; 
+    height: 140px;
+    font-size: 28px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 10px;
+    color: #fff
+  }
+}

@@ -1,3 +1,5 @@
+import path from 'path'
+
 const config = {
   projectName: 'photo-generator',
   date: '2021-10-20',
@@ -59,6 +61,10 @@ const config = {
         }
       }
     }
+  },
+  alias : {
+    '@/types' : path.resolve(__dirname,'..','src/types'),
+    '@/utils' : path.resolve(__dirname,'..','src/utils'),
   }
 }
 

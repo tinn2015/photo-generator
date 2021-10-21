@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    // "skipLibCheck": true,
     "target": "es2017",
     "module": "commonjs",
     "removeComments": false,
@@ -21,7 +22,10 @@
     "typeRoots": [
       "node_modules/@types",
       "global.d.ts"
-    ]
+    ],
+    "paths": {
+      "@/utils/*": ["./src/utils/*"]
+    },
   },
   "exclude": [
     "node_modules",
