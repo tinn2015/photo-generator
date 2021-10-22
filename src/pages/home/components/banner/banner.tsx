@@ -31,7 +31,7 @@ class Banner extends Component {
             <View className='demo-text-3'>3</View>
           </SwiperItem>
         </Swiper>
-        <View className='tab-box p-a w-100 flex jc-c jc-sb'>
+        <View className='tab-box p-a w-100 flex jc-c jc-ad'>
           <View className='tab-item flex jc-c ai-c'>
             制作证件照
           </View>

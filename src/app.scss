@@ -1,3 +1,7 @@
+view {
+  box-sizing: border-box;
+}
+
 .w-100 {
   width: 100%;
 }
@@ -14,12 +18,20 @@
   flex: 1
 }
 
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
 .jc-c {
   justify-content: center;
 }
 
-.jc-sb {
+.jc-ad {
   justify-content: space-around;
+}
+
+.jc-sb {
+  justify-content: space-between;
 }
 
 .ai-c {
@@ -32,4 +44,12 @@
 
 .p-a {
   position: absolute
+}
+
+.bg-fff {
+  background: #fff;
+}
+
+.c-fff {
+  color: #fff
 }
