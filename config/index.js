@@ -21,6 +21,18 @@ const config = {
     }
   },
   framework: 'react',
+  terser: {
+    enable: true,
+    config: {
+      // 配置项同 https://github.com/terser/terser#minify-options
+    }
+  },
+  csso: {
+    enable: true,
+    config: {
+      // 配置项同 https://github.com/css/csso#minifysource-options
+    }
+  },
   mini: {
     postcss: {
       pxtransform: {
@@ -65,6 +77,7 @@ const config = {
   alias : {
     '@/types' : path.resolve(__dirname,'..','src/types'),
     '@/utils' : path.resolve(__dirname,'..','src/utils'),
+    '@/components' : path.resolve(__dirname,'..','src/components'),
   }
 }
 

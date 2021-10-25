@@ -1,6 +1,9 @@
 export default {
   pages: [
+    'pages/photoDetail/photoDetail',
+    'pages/photo/photo',
     'pages/home/home',
+    'pages/searchResult/searchResult',
     'pages/index/index',
     'pages/demo/index',
   ],
@@ -24,7 +27,7 @@ export default {
         text: '首页'
       },
       {
-        pagePath: 'pages/index/index',
+        pagePath: 'pages/photo/photo',
         iconPath: 'assets/tabBar/photo.png',
         selectedIconPath: 'assets/tabBar/photo-selected.png',
         text: '证件照'

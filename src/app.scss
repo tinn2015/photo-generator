@@ -1,3 +1,5 @@
+@import "~taro-ui/dist/style/components/button.scss";
+
 view {
   box-sizing: border-box;
 }
@@ -20,6 +22,10 @@ view {
 
 .flex-wrap {
   flex-wrap: wrap;
+}
+
+.fd-c {
+  flex-direction: column;
 }
 
 .jc-c {

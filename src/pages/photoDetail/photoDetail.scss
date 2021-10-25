@@ -1,0 +1,27 @@
+.photo-detail {
+  background: #eee;
+  overflow: hidden;
+  padding: 30px 20px;
+  height: 100vh;
+  .take-pic-tip {
+    height: 380px;
+    border-radius: 20px;
+    border: 1px solid red
+  }
+
+  .photo-info {
+    margin-top: 30px;
+    height:400px;
+    border-radius: 20px;
+  }
+
+  .photo-detail-handles {
+    height: 200px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    .button {
+      width: 300px
+    }
+  }
+}

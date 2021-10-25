@@ -1,0 +1,24 @@
+@import '../../../../global.scss';
+.hot-nav {
+  height: 100%;
+  .nav-item {
+    height: 60px;
+    margin-top: 20px;
+    .nav-default-box {
+      height: 40px;
+      width: 10px;
+      flex-basis: 10px;
+    }
+    .nav-selected-bg {
+      background: $global-bg;
+    }
+    .nav-label {
+      flex: 1;
+      font-size: 30px;
+      padding-left: 40px;
+    }
+    .nav-label-selected {
+      color: $global-bg
+    }
+  }
+}

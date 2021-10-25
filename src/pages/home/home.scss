@@ -1,6 +1,7 @@
+@import '../../global.scss';
 .home {
   font-size: 28rpx;
-  background: #4ca3e2;
+  background: $global-bg;
   height: 100vh;
   .title {
     position: fixed;
