@@ -1,8 +1,9 @@
 export default {
   pages: [
-    'pages/photoDetail/photoDetail',
-    'pages/photo/photo',
+    'pages/generatePhoto/generatePhoto',
     'pages/home/home',
+    'pages/photo/photo',
+    'pages/photoDetail/photoDetail',
     'pages/searchResult/searchResult',
     'pages/index/index',
     'pages/demo/index',

@@ -1,5 +1,7 @@
 import Taro from '@tarojs/taro'
 
+console.log(Taro)
+
 export function getMenuButtonBoundingClientRect() {
   const rest = Taro.getMenuButtonBoundingClientRect()
   return rest

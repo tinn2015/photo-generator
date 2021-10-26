@@ -7,3 +7,5 @@ export interface IndexStore {
 export interface InjectStores {
   store: IndexStore
 }
+
+export type EmptyValue = undefined | null

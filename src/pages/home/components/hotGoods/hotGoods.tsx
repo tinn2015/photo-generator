@@ -1,5 +1,6 @@
 import {Component} from 'react'
 import { View } from '@tarojs/components'
+import Taro from '@tarojs/taro'
 
 import './hotGoods.scss'
 
@@ -54,6 +55,12 @@ class HotGoods extends Component {
     }
   }
 
+  selectPhoto = () => {
+    Taro.navigateTo({
+      url: '/pages/photoDetail/photoDetail'
+    })
+  }
+
   render () {
     const { hotGoods } = this.state
     return (
@@ -66,7 +73,7 @@ class HotGoods extends Component {
           {
             hotGoods.map((good) => {
               return (
-                <View className='hot-good-item bg-fff flex jc-c ai-c' key={good.id}>
+                <View className='hot-good-item bg-fff flex jc-c ai-c' key={good.id} onClick={this.selectPhoto}>
                   {good.label}
                 </View>
               )

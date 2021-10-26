@@ -1,4 +1,5 @@
 @import "~taro-ui/dist/style/components/button.scss";
+@import "~taro-ui/dist/style/components/float-layout.scss";
 
 view {
   box-sizing: border-box;
@@ -42,6 +43,10 @@ view {
 
 .ai-c {
   align-items: center;
+}
+
+.ai-fe {
+  align-items: flex-end;
 }
 
 .p-r {

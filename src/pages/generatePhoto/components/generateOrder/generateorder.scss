@@ -1,0 +1,37 @@
+@import '../../../../global.scss';
+.generate-order {
+  .tabs {
+    height: 60px;
+    .tab-item {
+      width: 50%;
+      .label {
+        height: 60px;
+        padding: 0 20px;
+        font-size: 32px;;
+      }
+    }
+    .tab-item-active {
+      color: $global-bg;
+      border-bottom: 4px solid $global-bg
+    }
+  }
+  .photo-info {
+    padding: 20px;
+    // height: 200px;
+    border-bottom: 1px solid #eee;
+    .photo-preview {
+      width: 200px;
+      height: 300px;
+      border: 1px solid red
+    }
+    .infos {
+      padding-left: 40px;
+    }
+  }
+  .more-service {
+    height: 200px;
+  }
+  .at-button {
+    margin: initial
+  }
+}

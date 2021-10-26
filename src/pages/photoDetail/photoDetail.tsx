@@ -2,10 +2,22 @@ import { Component } from 'react'
 import { View } from '@tarojs/components'
 import Taro from '@tarojs/taro'
 import { AtButton } from 'taro-ui'
+import { observer, inject } from 'mobx-react'
+import { SelectPhoto } from '../../store/selectPhoto'
 
 import './photoDetail.scss'
 
+interface PhotoDetail {
+  props: {
+    selectPhotoStore: SelectPhoto
+  }
+}
+@inject('selectPhotoStore')
+@observer
 class PhotoDetail extends Component {
+  constructor (props) {
+    super(props)
+  }
   componentDidShow () {
     Taro.setNavigationBarTitle({
       title: '四六级证件照'
@@ -17,8 +29,14 @@ class PhotoDetail extends Component {
       count: 1,
       sizeType: ['original'],
       sourceType: [type, 'user'],
-      success: function (res) {
+      success: (res) => {
         console.log(res)
+        const tempFilePath = res.tempFilePaths[0]
+        this.props.selectPhotoStore.setPhotoPath(tempFilePath)
+        console.log(this.props.selectPhotoStore)
+        Taro.navigateTo({
+          url: '/pages/generatePhoto/generatePhoto'
+        })
       }
     })
   }
