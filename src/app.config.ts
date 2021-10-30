@@ -1,6 +1,8 @@
 export default {
   pages: [
+    'pages/postAddress/postAddress',
     'pages/generatePhoto/generatePhoto',
+    'pages/my/my',
     'pages/home/home',
     'pages/photo/photo',
     'pages/photoDetail/photoDetail',
@@ -33,12 +35,12 @@ export default {
         selectedIconPath: 'assets/tabBar/photo-selected.png',
         text: '证件照'
       },
-      {
-        pagePath: 'pages/index/index',
-        iconPath: 'assets/tabBar/cart.png',
-        selectedIconPath: 'assets/tabBar/cart-selected.png',
-        text: '购物车'
-      },
+      // {
+      //   pagePath: 'pages/index/index',
+      //   iconPath: 'assets/tabBar/cart.png',
+      //   selectedIconPath: 'assets/tabBar/cart-selected.png',
+      //   text: '购物车'
+      // },
       {
         pagePath: 'pages/demo/index',
         iconPath: 'assets/tabBar/my.png',

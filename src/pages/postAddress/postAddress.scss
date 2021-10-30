@@ -1,0 +1,40 @@
+.post-address {
+  height: 100vh;
+  background: #eee;
+  padding: 20px;
+  .card {
+    border-radius: 30px;
+    padding: 30px;
+    margin-top: 20px;
+  }
+  .photo-info {
+    .photo-info-item {
+      margin-top: 10px;
+    }
+  }
+  .preview-box {
+    padding: 20px;
+    .photo-preview {
+      width: 200px;
+      height: 240px;
+      border: 1px solid red
+    }
+  }
+  .address-form {
+    // padding: 20px 30px;
+    margin-top: 20px;
+  }
+  .photo-info-icon {
+    width: 30px;
+    height: 30px;
+  }
+  .photo-info-label {
+    margin-left: 10px;
+  }
+  .at-input {
+    padding: 16px 0;
+    input, .at-input__title {
+      font-size: 24px;
+    }
+  }
+}

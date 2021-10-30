@@ -1,0 +1,51 @@
+@import '../../global.scss';
+.my-container {
+  background: $global-bg;
+  height: 100vh;
+  .my-top-header {
+    height: 450px;
+    flex-basis: 400px;
+    .my-avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 60px;
+      border: 1px solid #fefefe;
+      margin-left: 50px;
+    }
+    .my-label {
+      margin-left:  40px;
+      // margin-top: 20px;
+    }
+  }
+  .my-content {
+    border-radius: 40px 40px 0 0;
+    background: #eee;
+    height: 100%;
+    flex: 1;
+    padding: 20px;
+    .card {
+      padding: 30px 30px;
+      margin-top: 40px;
+      border-radius: 20px;
+    }
+    .my-state {
+    }
+    .my-orders {
+      .orders {
+        margin-top: 20px;
+      }
+    }
+    .other-services {
+      .services {
+        margin-top: 20px;
+      }
+    }
+    .icon {
+      width: 50px;
+      height: 50px;
+    }
+    .label {
+      margin-top: 10px;
+    }
+  }
+}

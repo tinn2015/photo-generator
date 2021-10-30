@@ -32,6 +32,22 @@ class GenerateOrder extends Component {
     })
   }
 
+  requestOrAddress = () => {
+    const {activeTab} = this.state
+    if (activeTab === 1) {
+      console.log('去支付')
+    } else {
+      Taro.navigateTo({
+        url: '/pages/postAddress/postAddress'
+      })
+    }
+    // Taro.requestPayment({
+    //   success: (res) => {
+    //     console.log(res)
+    //   }
+    // })
+  }
+
   render () {
     const { activeTab } = this.state
     return(
@@ -44,7 +60,7 @@ class GenerateOrder extends Component {
           <View className='photo-preview'>preview</View>
           <View className='infos flex fd-c jc-sb'>
             <View>英语四六级考试</View>
-            <View>电子版相片处理</View>
+            <View className='ft24 c-333'>{ activeTab === 1 ? '电子版 + 相片处理' : '纸质版 + 电子版 + 相片处理' }</View>
             <View>已选底色</View>
             <View>¥ 2.9</View>
           </View>
@@ -54,7 +70,7 @@ class GenerateOrder extends Component {
         </View>
         <View className='settlement flex jc-sb ai-fe'>
           <View>¥ 2.9</View>
-          <AtButton type='primary' size='small'>生成电子照</AtButton>  
+          <AtButton type='primary' size='small' onClick={this.requestOrAddress}>{activeTab === 1 ? '生成电子照' : '提交冲印'}</AtButton>  
         </View>
       </View>
     )

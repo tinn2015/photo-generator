@@ -1,27 +1,31 @@
 import { Component } from 'react'
-import { Provider } from 'mobx-react'
+import { Provider, inject } from 'mobx-react'
 import Taro from '@tarojs/taro'
-// import 'taro-ui/dist/style/index.scss'
 
 import counterStore from './store/counter'
 import demoStore from './store/demo'
 import selectPhotoStore from './store/selectPhoto'
+import userStore from './store/user'
 
 import './app.scss'
 
 const store = {
   counterStore,
   demoStore,
-  selectPhotoStore
+  selectPhotoStore,
+  userStore
 }
 
 console.log(store)
 Taro.onAppShow(() => {
   console.log('onappshow')
 })
+
 class App extends Component {
 
-  componentDidMount () {}
+  componentDidMount () {
+    console.log('userStore', userStore)
+  }
 
   componentDidShow () {
     console.log('didshow')
