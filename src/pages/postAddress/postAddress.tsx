@@ -1,5 +1,5 @@
 import { Component } from 'react'
-import { View, Image } from '@tarojs/components'
+import { View, Image, Picker } from '@tarojs/components'
 import { getMenuButtonBoundingClientRect } from '@/utils/index'
 import Taro from '@tarojs/taro'
 import { AtForm, AtInput } from 'taro-ui'
@@ -25,7 +25,9 @@ class PostAddress extends Component {
       checkboxIcon: require('../../assets/checkbox.png'),
       addressForm: {
         address: ''
-      }
+      },
+      region: [['美国'], ['中国'], ['巴西'], ['日本']],
+      selectorChecked: '美国',
     }
   }
 
@@ -56,6 +58,7 @@ class PostAddress extends Component {
 
   render () {
     const {checkboxIcon} = this.state
+    const {region} = this.state
     return (
       <View className='post-address home flex fd-c'>
         <View className='card bg-fff'>
@@ -91,6 +94,9 @@ class PostAddress extends Component {
               onSubmit={this.onSubmit.bind(this)}
               onReset={this.onReset.bind(this)}
             >
+              <Picker mode='selector' range={region} onChange={this.getRegion}>
+                <View>所在地区</View>
+              </Picker> 
               <AtInput 
                 name='value' 
                 title='所在地区' 
