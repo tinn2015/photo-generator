@@ -2,23 +2,23 @@ import { Component } from 'react'
 import { View, Image, Picker } from '@tarojs/components'
 import { getMenuButtonBoundingClientRect } from '@/utils/index'
 import Taro from '@tarojs/taro'
-import { AtForm, AtInput } from 'taro-ui'
+import { AtForm, AtInput, AtList, AtListItem, AtButton } from 'taro-ui'
 import { inject } from 'mobx-react'
 
 import './postAddress.scss'
 
-// interface Home {
-//   state: {
-//     menuButtonRect: Record<string, number>
-//   },
-//   props: {
-//     userStore: UserStore
-//   }
-// }
+interface Home {
+  state: {
+    menuButtonRect: Record<string, number>
+    region: Array<string>
+  },
+  props: {
+    userStore: UserStore
+  }
+}
 
 // @inject('userStore')
 class PostAddress extends Component {
-
   constructor (props) {
     super(props)
     this.state = {
@@ -40,13 +40,13 @@ class PostAddress extends Component {
   componentDidShow () {
   }
 
-  openSetting () {
-    // Taro.openSetting()
-    console.log(this)
-    const { userStore } = this.props
-    console.log(this.props.userStore)
-    userStore.getUserInfo()
-  }
+  // openSetting () {
+  //   // Taro.openSetting()
+  //   console.log(this)
+  //   const { userStore } = this.props
+  //   console.log(this.props.userStore)
+  //   userStore.getUserInfo()
+  // }
 
   onSubmit = (event) => {
     console.log(this.state.value)
@@ -55,6 +55,8 @@ class PostAddress extends Component {
   onReset = (event) => {
     console.log(this.state.value)
   }
+
+  getRegion = () => {}
 
   render () {
     const {checkboxIcon} = this.state
@@ -83,7 +85,7 @@ class PostAddress extends Component {
             </View>
           </View>
         </View>
-        <View className='card bg-fff'>
+        <View className='pay-express card bg-fff'>
           <View>支付方式</View>
           <View>配送方式</View>
         </View>
@@ -95,16 +97,14 @@ class PostAddress extends Component {
               onReset={this.onReset.bind(this)}
             >
               <Picker mode='selector' range={region} onChange={this.getRegion}>
-                <View>所在地区</View>
+                <AtList className='ft24'>
+                  <AtListItem
+                    title='国家地区'
+                    className='ft24'
+                    extraText={this.state.selectorChecked}
+                  />
+                </AtList>
               </Picker> 
-              <AtInput 
-                name='value' 
-                title='所在地区' 
-                type='text' 
-                placeholder='单行文本' 
-                className='ft24'
-                value={this.state.addressForm.address} 
-              />
               <AtInput 
                 name='value' 
                 title='详细地址' 
@@ -113,10 +113,28 @@ class PostAddress extends Component {
                 className='ft24'
                 value={this.state.addressForm.address} 
               />
-              {/* <AtButton formType='submit'>提交</AtButton>
-              <AtButton formType='reset'>重置</AtButton> */}
-            </AtForm> 
+              <AtInput 
+                name='value' 
+                title='收货人' 
+                type='text' 
+                placeholder='单行文本' 
+                className='ft24'
+                value={this.state.addressForm.address} 
+              />
+              <AtInput 
+                name='value' 
+                title='手机号码' 
+                type='text' 
+                placeholder='单行文本' 
+                className='ft24'
+                value={this.state.addressForm.address} 
+              />
+            </AtForm>
           </View>
+        </View>
+        <View className='bottom-bar w-100 flex jc-sb ai-c bg-fff'>
+          <View>合计：¥12.9</View>
+          <AtButton type='primary' size='small'>提交订单</AtButton>
         </View>
       </View>
     )

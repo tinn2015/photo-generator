@@ -1,10 +1,10 @@
 export default {
   pages: [
-    'pages/postAddress/postAddress',
     'pages/home/home',
     'pages/generatePhoto/generatePhoto',
     'pages/my/my',
     'pages/photo/photo',
+    'pages/postAddress/postAddress',
     'pages/photoDetail/photoDetail',
     'pages/searchResult/searchResult',
     'pages/index/index',

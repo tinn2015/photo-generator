@@ -1,7 +1,8 @@
 .post-address {
-  height: 100vh;
+  // height: 100vh;
   background: #eee;
-  padding: 20px;
+  padding: 20px 20px 100px 20px;
+  overflow: hidden;
   .card {
     border-radius: 30px;
     padding: 30px;
@@ -20,9 +21,32 @@
       border: 1px solid red
     }
   }
+  .pay-express {
+  }
   .address-form {
     // padding: 20px 30px;
     margin-top: 20px;
+    .region-selected {
+      margin-left: 20px;
+    }
+    picker {
+      padding: 0 32px
+    }
+    .at-list__item {
+      padding: 16px 0
+    }
+  }
+  .bottom-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    padding: 20px;
+    border-top: 1px solid #eee;
+    background: #eaeaea;
+    z-index: 10;
+    .at-button {
+      margin: 0
+    }
   }
   .photo-info-icon {
     width: 30px;

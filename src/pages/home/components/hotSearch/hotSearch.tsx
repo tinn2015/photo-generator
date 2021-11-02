@@ -1,32 +1,32 @@
 import { Component } from 'react'
+import Taro from '@tarojs/taro'
 import { View } from '@tarojs/components'
 
 import './hotSearch.scss'
 
 interface HotSearch {
-  state: {
-    hotKeys: Array<string>
+  props: {
+    searchHotKeys: Array<string>
   }
 }
 
 class HotSearch extends Component {
 
-  constructor (props) {
-    super(props)
-    this.state = {
-      hotKeys: ['aa', 'bbbb', 'cccc', 'erewrewrew']
-    }
+  routerToSearchResult (key) {
+    Taro.navigateTo({
+      url: '/pages/searchResult/searchResult'
+    })
   }
 
   render () {
-    const {hotKeys} = this.state
+    const {searchHotKeys} = this.props
     return (
       <View className='hot-search c-fff flex jc-sb ai-c'>
         <View className='hot-item'>热门搜索：</View>
         {
-          hotKeys.map(key => {
+          searchHotKeys.map(key => {
             return (
-              <View className='hot-item' key={key}>{key}</View>
+              <View className='hot-item' key={key} onClick={() => {this.routerToSearchResult(key)}}>{key}</View>
             )
           })
         }

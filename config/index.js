@@ -75,9 +75,9 @@ const config = {
     }
   },
   alias : {
-    '@/types' : path.resolve(__dirname,'..','src/types'),
+    '@/types' : path.resolve(__dirname,'../','src/types'),
     '@/utils' : path.resolve(__dirname,'..','src/utils'),
-    '@/components' : path.resolve(__dirname,'..','src/components'),
+    '@/components' : path.resolve(__dirname,'../','src/components'),
   }
 }
 

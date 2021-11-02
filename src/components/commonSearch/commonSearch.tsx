@@ -9,10 +9,16 @@ import './commonSearch.scss'
 interface CommonSearch {
   state: {
     searchValue: string
+  },
+  props: {
+    searchTip: string
   }
 }
 
 class CommonSearch extends Component {
+  constructor (props) {
+    super(props)
+  }
 
   routerToSearch = () => {
     Taro.navigateTo({
@@ -21,13 +27,15 @@ class CommonSearch extends Component {
   }
 
   render () {
+    const {searchTip} = this.props
     return (
-      <View className='common-search bg-fff flex jc-c ai-c'>
-        <Input
+      <View className='common-search bg-fff flex jc-c ai-c' onClick={this.routerToSearch}>
+        {/* <Input
           className='search-input'
-          placeholder='搜索证件照、尺寸'
+          placeholder={searchTip || '搜索证件照、尺寸'}
           onClick={this.routerToSearch}
-        ></Input>
+        ></Input> */}
+        {searchTip || '搜索证件照、尺寸'}
       </View>
     )
   }
