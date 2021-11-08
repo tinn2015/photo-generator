@@ -22,14 +22,31 @@
     .photo-preview {
       width: 200px;
       height: 300px;
-      border: 1px solid red
     }
     .infos {
       padding-left: 40px;
+      .select-bg {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-left: 20px;
+      }
     }
   }
   .more-service {
-    height: 200px;
+    padding: 20px;
+    .check-default {
+      font-size: 36px;
+      color: #b5b5b5;
+      margin-left: 10px;
+      font-weight: bold;
+    }
+    .checked {
+      font-size: 36px;
+      color: $global-bg;
+      margin-left: 10px;
+      font-weight: bold;
+    }
   }
   .at-button {
     margin: initial

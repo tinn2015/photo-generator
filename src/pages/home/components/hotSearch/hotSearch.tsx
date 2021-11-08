@@ -1,18 +1,23 @@
 import { Component } from 'react'
 import Taro from '@tarojs/taro'
 import { View } from '@tarojs/components'
+import { inject } from 'mobx-react'
+import { Photo } from '../../../../store/photo'
 
 import './hotSearch.scss'
 
 interface HotSearch {
   props: {
-    searchHotKeys: Array<string>
+    searchHotKeys: Array<string>,
+    photoStore: Photo
   }
 }
-
 class HotSearch extends Component {
 
   routerToSearchResult (key) {
+    console.log(this.props)
+    const { photoStore } = this.props
+    photoStore.setHotKey(key)
     Taro.navigateTo({
       url: '/pages/searchResult/searchResult'
     })

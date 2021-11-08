@@ -3,7 +3,7 @@ import { View, Image } from '@tarojs/components'
 import { AtButton, AtFloatLayout } from 'taro-ui'
 import { observer, inject } from 'mobx-react'
 import Taro from '@tarojs/taro'
-import { SelectPhoto } from '../../store/selectPhoto'
+import { Photo } from '../../store/photo'
 import GenerateOrder from './components/generateOrder/generateOrder'
 
 import './generatePhoto.scss'
@@ -11,24 +11,41 @@ import './generatePhoto.scss'
 interface GeneratePhoto {
   state: {
     changeIconBg: string,
-    colorList: Array<string>,
-    openPopup: boolean
+    openPopup: boolean,
+    selectedBg: string,
+    colorList: Array<string>
   },
   props: {
-    selectPhotoStore:SelectPhoto
+    photoStore: Photo
   }
 }
 
-@inject('selectPhotoStore')
+@inject('photoStore')
 @observer
 class GeneratePhoto extends Component {
   constructor (props) {
     super(props)
     this.state = {
       changeIconBg: require('../../assets/changeBg.png'),
-      colorList: ['#ffffff', '#4ca3e2', '#0064d2'],
-      openPopup: true
+      openPopup: false,
+      selectedBg: '',
+      colorList: []
     }
+  }
+
+  componentDidMount () {
+    const {photoStore: {previewInfo: { preview }}} = this.props
+    const colorList = Object.keys(preview)
+    this.setState({
+      colorList,
+      selectedBg: colorList[0]
+    })
+  }
+
+  changeBg = (color: string) => {
+    this.setState({
+      selectedBg: color
+    })
   }
 
   reGetPhoto = () => {
@@ -45,12 +62,22 @@ class GeneratePhoto extends Component {
   }
 
   render () {
-    const {changeIconBg, colorList, openPopup} = this.state
-    const {photoPath} = this.props.selectPhotoStore
+    const {changeIconBg, openPopup, selectedBg, colorList} = this.state
+    const { photoStore } = this.props
+    const {photoStore: {previewInfo: {preview }, photoDetail: {desc}}} = this.props
     return(
       <View className='generatePhoto-container flex fd-c jc-sb'>
-        <View className='preview-box'>
-          <Image src={photoPath}></Image>
+        <View className='preview-box flex jc-c ai-c'>
+          <Image src={preview[selectedBg]}></Image>
+        </View>
+        <View className='photo-size flex jc-c ai-c'>
+          <View className='flex fd-c'>
+          {
+            desc.map(item => {
+              return <View className='ft24 c-333' key={item}>{item}</View>
+            })
+          }
+          </View>
         </View>
         <View className='change-handles bg-fff'>
           <View className='flex jc-c ai-c'>
@@ -60,7 +87,9 @@ class GeneratePhoto extends Component {
           <View className='generatephoto-colors flex jc-ad ai-c'>
             {
               colorList.map(color => {
-                return <View className='color-item' style={{background: color}} key={color}></View>
+                return <View className='color-item-box' key={color} style={{'borderBottom': selectedBg === color ? `3px solid ${selectedBg}` : 'none'}}>
+                  <View className='color-item' style={{background: color}} onClick={() => {this.changeBg(color)}}></View>
+                </View>
               })
             }
           </View>
@@ -70,7 +99,7 @@ class GeneratePhoto extends Component {
           </View>
         </View>
         <AtFloatLayout isOpened={openPopup} onClose={this.togglePopup}>
-          <GenerateOrder></GenerateOrder>
+          <GenerateOrder photoStore={photoStore} selectBg={selectedBg}></GenerateOrder>
         </AtFloatLayout>
       </View>
     )

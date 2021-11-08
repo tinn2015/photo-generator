@@ -3,8 +3,28 @@
   height: 100%;
   .photo-ad-holder {
     width: 100%;
-    height: 150px;
-    border: 1px solid red
+    height: 240px;
+    position: relative;
+    .image {
+      height: 240px;
+      width: 100%;
+      border-radius: 16px;
+    }
+    .title {
+      position: absolute;
+      z-index: 10;
+      left: 10px;
+      top: 10px;
+      background: rgba(0, 0, 0, 0.2);
+      padding: 5px 10px;
+      border-radius: 8px;
+    }
+    .desc {
+      position: absolute;
+      z-index: 10;
+      left: 10px;
+      bottom: 10px;
+    }
   }
   .photo-list-content {
     margin-top: 50px;

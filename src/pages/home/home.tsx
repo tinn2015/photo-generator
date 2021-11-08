@@ -10,6 +10,7 @@ import Banner from './components/banner/banner'
 import HotSearch from './components/hotSearch/hotSearch'
 import HotGoods from './components/hotGoods//hotGoods'
 import { UserStore } from '../../store/user'
+import { PhotoInfo, Photo } from '../../store/photo'
 
 import './home.scss'
 
@@ -20,15 +21,16 @@ interface Home {
     bannerBtn: Array<Record<string, string>>,
     searchTip: string,
     searchHotKeys: Array<string>,
-    goods: Array<Record<string, string>>
+    goods: Array<PhotoInfo>
   },
   props: {
     userStore: UserStore,
-    searchTips: string
+    searchTips: string,
+    photoStore: Photo
   }
 }
 
-@inject('userStore')
+@inject('userStore', 'photoStore')
 class Home extends Component {
 
   constructor (props) {
@@ -44,8 +46,8 @@ class Home extends Component {
   }
 
   componentDidMount () {
-    const { userStore } = this.props
-    console.log(this.props.userStore)
+    const { userStore, photoStore } = this.props
+    console.log('store', userStore, photoStore)
     // userStore.getUserInfo()
     homeGetData({}).then((res: HomeData) => {
       console.log('homeGetDatat', res)
@@ -69,13 +71,14 @@ class Home extends Component {
 
   render () {
     const {menuButtonRect, bannerBg, bannerBtn, searchTip, searchHotKeys, goods} = this.state
+    const { photoStore } = this.props
     return (
       <View className='home flex fd-c'>
         <View className='title flex jc-c ai-c' style={{top: menuButtonRect.top}}>一分钟证件照</View>
         <Banner bannerBg={bannerBg} bannerBtn={bannerBtn}></Banner>
         <CommonSearch searchTip={searchTip}></CommonSearch>
-        <HotSearch searchHotKeys={searchHotKeys}></HotSearch>
-        <HotGoods hotGoods={goods}></HotGoods>
+        <HotSearch photoStore={photoStore} searchHotKeys={searchHotKeys}></HotSearch>
+        <HotGoods photoStore={photoStore} hotGoods={goods}></HotGoods>
       </View>
     )
   }

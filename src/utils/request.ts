@@ -8,7 +8,7 @@ const request = function (options: Options) {
     Taro.request({
       url: options.url,
       success: (res) => {
-        resolve(res)
+        resolve(res.data)
       },
       fail: (err) => {
         reject(err)

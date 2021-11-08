@@ -5,6 +5,8 @@
 @import "~taro-ui/dist/style/components/icon.scss";
 @import "~taro-ui/dist/style/components/list.scss";
 @import "~taro-ui/dist/style/components/icon.scss";
+@import "~taro-ui/dist/style/components/toast.scss";
+@import "~taro-ui/dist/style/components/icon.scss";
 
 
 view {
@@ -55,6 +57,10 @@ view {
   align-items: flex-end;
 }
 
+.ai-fs {
+  align-items: flex-start;
+}
+
 .p-r {
   position: relative;
 }
@@ -73,6 +79,10 @@ view {
 
 .c-333 {
   color: #333333
+}
+
+.c-ff5722 {
+  color: #ff5722
 }
 
 .ft28 {

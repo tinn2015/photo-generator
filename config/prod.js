@@ -1,7 +1,7 @@
 module.exports = {
   env: {
     NODE_ENV: '"production"',
-    needMock: `'${process.env.needMock || false}'`
+    needMock: process.env.needMock || false
   },
   defineConstants: {
   },

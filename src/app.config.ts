@@ -1,12 +1,12 @@
 export default {
   pages: [
     'pages/home/home',
+    'pages/searchResult/searchResult',
     'pages/generatePhoto/generatePhoto',
     'pages/my/my',
     'pages/photo/photo',
     'pages/postAddress/postAddress',
     'pages/photoDetail/photoDetail',
-    'pages/searchResult/searchResult',
     'pages/index/index',
     'pages/demo/index',
   ],
@@ -42,7 +42,7 @@ export default {
       //   text: '购物车'
       // },
       {
-        pagePath: 'pages/demo/index',
+        pagePath: 'pages/my/my',
         iconPath: 'assets/tabBar/my.png',
         selectedIconPath: 'assets/tabBar/my-selected.png',
         text: '我的'

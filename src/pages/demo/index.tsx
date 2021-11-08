@@ -1,7 +1,7 @@
 import { Component } from 'react'
 import {View} from '@tarojs/components'
 import { observer, inject } from 'mobx-react'
-import {InjectStores} from '../../types/store'
+import {InjectStores} from '../../types'
 import {Demo} from '../../types/store/demo'
 
 

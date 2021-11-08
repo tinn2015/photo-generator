@@ -1,13 +1,14 @@
-import { Component } from 'react'
+import { Component, useMemo } from 'react'
 import { View } from '@tarojs/components'
 
 import './hotNav.scss'
 
 interface HotNav {
   state: {
-    navs: Array<Record<string, unknown>>,
-    currentSelected: number | null,
-    navSelected: () => void
+    currentSelected: string | null,
+  },
+  props: {
+    searchHotKeys: Array<string>
   }
 }
 
@@ -15,44 +16,49 @@ class HotNav extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      navs: [
-        {
-          id: 1,
-          label: '寸照'
-        },
-        {
-          id: 2,
-          label: '考试'
-        },
-        {
-          id: 3,
-          label: '职业资格'
-        },
-        {
-          id: 4,
-          label: '签证'
-        }
-      ],
-      currentSelected: 1
+      currentSelected: ''
     }
   }
 
-  navSelected = (navId: number | null) => {
+  componentDidMount () {
+    // const searchHotKeys = this.props
+    // const currentSelected = useMemo(this.navSelected, [searchHotKeys])
+    // this.setState({
+    //   currentSelected
+    // })
+  }
+
+  componentDidShow () {
+    const { searchHotKeys } = this.props
+    console.log('componentDidShow')
     this.setState({
-      currentSelected: navId
+      currentSelected: searchHotKeys[0]
+    })
+  }
+
+
+  onShow = () => {
+    console.log('onShow')
+  }
+
+  navSelected = (key: string | null) => {
+    this.setState({
+      currentSelected: key
     })
   }
 
   render () {
-    const {navs, currentSelected} = this.state
+    const {currentSelected} = this.state
+    const { searchHotKeys } = this.props
+    const selected = currentSelected || searchHotKeys[0]
     return(
       <View className='hot-nav'>
         {
-          navs.map(item => {
+          searchHotKeys.length && searchHotKeys.map(item => {
             return (
-              <View className='nav-item flex jc-sb ai-c' key={item.id} onClick={() => {this.navSelected(item.id)}}>
-                <View className={currentSelected === item.id ? 'nav-default-box nav-selected-bg' : 'bg-fff nav-default-box'}></View>
-                <View className={currentSelected === item.id ? 'nav-label nav-label-selected' : 'nav-label'}>{item.label}</View>
+              <View className='nav-item flex jc-sb ai-c' key={item} onClick={() => {this.navSelected(item)}}>
+                <View className={selected === item ? 'nav-default-box nav-selected-bg' : 'bg-fff nav-default-box'}></View>
+                <View className={selected === item ? 'nav-label nav-label-selected' : 'nav-label'}>{item}</View>
               </View>
             )
           })

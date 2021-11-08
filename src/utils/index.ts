@@ -8,13 +8,14 @@ export function getMenuButtonBoundingClientRect() {
 }
 
 export function debounce (fn: Function, delay: number) {
-  let timer = 0
-  return function () {
+  let timer
+  console.log('dddd', timer)
+  return function (params?:unknown) {
     if (timer) {
       clearTimeout(timer)
-      timer = setTimeout(fn, delay)
+      timer = setTimeout(() => {fn(params)}, delay)
     } else {
-      timer = setTimeout(fn, delay)
+      timer = setTimeout(() => {fn(params)}, delay)
     }
   }
 }

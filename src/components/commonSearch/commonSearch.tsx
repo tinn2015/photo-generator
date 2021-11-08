@@ -11,7 +11,7 @@ interface CommonSearch {
     searchValue: string
   },
   props: {
-    searchTip: string
+    searchTip?: string
   }
 }
 

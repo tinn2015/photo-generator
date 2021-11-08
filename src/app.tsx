@@ -4,7 +4,7 @@ import Taro from '@tarojs/taro'
 
 import counterStore from './store/counter'
 import demoStore from './store/demo'
-import selectPhotoStore from './store/selectPhoto'
+import photoStore from './store/photo'
 import userStore from './store/user'
 
 import './app.scss'
@@ -12,7 +12,7 @@ import './app.scss'
 const store = {
   counterStore,
   demoStore,
-  selectPhotoStore,
+  photoStore,
   userStore
 }
 
