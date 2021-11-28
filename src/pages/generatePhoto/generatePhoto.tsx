@@ -68,12 +68,12 @@ class GeneratePhoto extends Component {
     return(
       <View className='generatePhoto-container flex fd-c jc-sb'>
         <View className='preview-box flex jc-c ai-c'>
-          <Image src={preview[selectedBg]}></Image>
+          <Image mode='aspectFit' src={preview[selectedBg]}></Image>
         </View>
         <View className='photo-size flex jc-c ai-c'>
           <View className='flex fd-c'>
           {
-            desc.map(item => {
+            desc && desc.map(item => {
               return <View className='ft24 c-333' key={item}>{item}</View>
             })
           }

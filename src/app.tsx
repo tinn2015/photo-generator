@@ -16,11 +16,6 @@ const store = {
   userStore
 }
 
-console.log(store)
-Taro.onAppShow(() => {
-  console.log('onappshow')
-})
-
 class App extends Component {
 
   componentDidMount () {

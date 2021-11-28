@@ -45,3 +45,6 @@ export interface Ad {
   desc: string,
   url: string
 }
+export interface LoginResult {
+  code: string
+}

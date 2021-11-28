@@ -7,7 +7,9 @@
 @import "~taro-ui/dist/style/components/icon.scss";
 @import "~taro-ui/dist/style/components/toast.scss";
 @import "~taro-ui/dist/style/components/icon.scss";
+@import "~taro-ui/dist/style/components/modal.scss";
 
+@import'./global.scss';
 
 view {
   box-sizing: border-box;
@@ -83,6 +85,10 @@ view {
 
 .c-ff5722 {
   color: #ff5722
+}
+
+.c-main {
+  color: #4ca3e2
 }
 
 .ft28 {

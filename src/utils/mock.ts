@@ -18,7 +18,7 @@ let homeGetData = Mock.mock({
   'goods|2-10': [{
     'id|+1': 20210001,
     'img|+1': Random.image('200x100', Random.hex(), '#FFF', 'Mock.js'),
-    'title|+1': Random.word(3, 5),
+    'title|+1': ["寸照", "考试", "资格", "证件", "一寸", "英语四六级别"],
     'desc': ['支持冲印', '尺寸：25x35mm']
   }]
 })
@@ -71,7 +71,7 @@ let photoGetData = Mock.mock({
 		"title": "热门分类对应广告",
 		"desc": "现在下单享受85折",
 		"stay_time":5,
-		"url": "https://www.baidu.com"
+		"url": "https://www.baidu.com1111111"
 	}],
   "search_tips": "搜索证件照名称、尺寸1111",
 	"search_hotkeys": ["寸照", "考试", "职业资格", "证件类", "签证", "公务员", "其他"],

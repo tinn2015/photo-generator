@@ -32,7 +32,7 @@ class HotGoods extends Component {
   }
 
   routerToPhoto = () => {
-    Taro.navigateTo({
+    Taro.switchTab({
       url: '/pages/photo/photo'
     })
   }
@@ -45,7 +45,7 @@ class HotGoods extends Component {
           <View className='hot-goods-title'>热门规格</View>
           <View className='hot-goods-more' onClick={this.routerToPhoto}>查看全部</View>
         </View>
-        <View className='hot-goods-container flex jc-ad flex-wrap'>
+        <View className='hot-goods-container flex flex-wrap'>
           {
             hotGoods.map((good) => {
               return (
@@ -55,7 +55,8 @@ class HotGoods extends Component {
                     mode='scaleToFill'
                     src={good.img}
                   />
-                  <View className='good-title'>{good.title}</View>
+                  <View className='good-title c-333'>{good.title}</View>
+                  <View className='c-main ft20'>{good.desc[1]}</View>
                 </View>
               )
             })

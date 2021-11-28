@@ -19,3 +19,16 @@ export function debounce (fn: Function, delay: number) {
     }
   }
 }
+
+export function getLoginInfoFromStroage () {
+  const openid = Taro.getStorageSync('openid')
+  const sessionKey = Taro.getStorageSync('sessionKey')
+  return {
+    openid,
+    sessionKey
+  }
+}
+
+export function setLoginInfoFromStroage (loginInfo) {
+  Taro.setStorage({key: 'loginInfo', data: loginInfo})
+}

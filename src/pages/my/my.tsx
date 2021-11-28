@@ -1,5 +1,7 @@
 import { Component } from 'react'
+import Taro from '@tarojs/taro'
 import { View, Image } from '@tarojs/components'
+import LoginModal from '../../components/loginModal/loginModal'
 
 import './my.scss'
 
@@ -11,6 +13,19 @@ class My extends Component {
       orders: require('../../assets/my/orders-active.png'),
     }
   }
+
+  routerToCooperation = () => {
+    Taro.navigateTo({
+      url: '/pages/channelCooperation/channelCooperation'
+    })
+  }
+
+  routerToProblems = () => {
+    Taro.navigateTo({
+      url: '/pages/problems/problems'
+    })
+  }
+
   render () {
     const paymentIcon = this.state.payment
     const ordersIcon = this.state.orders
@@ -59,17 +74,18 @@ class My extends Component {
                 <View className='icon flex jc-c ai-c'><Image className='icon' mode='scaleToFill' src={paymentIcon} /></View>
                 <View className='label ft20 c-333'>我的优惠券</View>
               </View>
-              <View className='flex fd-c jc-c ai-c'>
+              <View className='flex fd-c jc-c ai-c' onClick={this.routerToProblems}>
                 <View className='icon flex jc-c ai-c'><Image className='icon' mode='scaleToFill' src={paymentIcon} /></View>
-                <View className='label ft20 c-333'>积分管理</View>
+                <View className='label ft20 c-333'>常见问题</View>
               </View>
-              <View className='flex fd-c jc-c ai-c'>
+              <View className='flex fd-c jc-c ai-c' onClick={this.routerToCooperation}>
               <View className='icon flex jc-c ai-c'><Image className='icon' mode='scaleToFill' src={ordersIcon} /></View>
                 <View className='label ft20 c-333'>渠道合作</View>
               </View>
             </View>
           </View>
         </View>
+        <LoginModal></LoginModal>
       </View>
     )
   }

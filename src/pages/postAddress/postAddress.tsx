@@ -1,5 +1,5 @@
 import { Component } from 'react'
-import { View, Image, Picker } from '@tarojs/components'
+import { View, Image, Picker, PickerView, PickerViewColumn } from '@tarojs/components'
 import { getMenuButtonBoundingClientRect } from '@/utils/index'
 import Taro from '@tarojs/taro'
 import { AtForm, AtInput, AtList, AtListItem, AtButton } from 'taro-ui'
@@ -13,7 +13,7 @@ interface Home {
     region: Array<string>
   },
   props: {
-    userStore: UserStore
+    // userStore: UserStore
   }
 }
 
@@ -32,8 +32,8 @@ class PostAddress extends Component {
   }
 
   componentDidMount () {
-    const { userStore } = this.props
-    console.log(this.props.userStore)
+    // const { userStore } = this.props
+    // console.log(this.props.userStore)
     // userStore.getUserInfo()
   }
 
@@ -92,7 +92,8 @@ class PostAddress extends Component {
         <View className='card bg-fff'>
           <View>收件地址</View>
           <View className='address-form'>
-            <AtForm
+
+            {/* <AtForm
               onSubmit={this.onSubmit.bind(this)}
               onReset={this.onReset.bind(this)}
             >
@@ -129,7 +130,7 @@ class PostAddress extends Component {
                 className='ft24'
                 value={this.state.addressForm.address} 
               />
-            </AtForm>
+            </AtForm> */}
           </View>
         </View>
         <View className='bottom-bar w-100 flex jc-sb ai-c bg-fff'>

@@ -23,7 +23,17 @@ export interface PhotoDetailType {
   },
   'title': string,
   'desc': Array<string>,
-  'bg_color': Array<string>
+  'bg_color': Array<string>,
+  'ele_price': number,
+  'ele_opt_price': number,
+  'obj_price': number,
+  'obj_opt_price': number,
+}
+
+export interface Order {
+  type: number,
+  price: number,
+  opt_price: number
 }
 
 export class Photo {
@@ -37,9 +47,13 @@ export class Photo {
 
   @observable photoDetail: PhotoDetailType
 
-  // @computed get fullName () {
+  @observable order: Order
+
+  // @computed get name () {
+  //   if (this.name) {}
   //   return this.name + '这是一个fullname'
   // }
+
   @action setPhotoPath (path: string) {
     this.photoPath = path
   }
@@ -58,6 +72,28 @@ export class Photo {
 
   @action setPhotoDetail (obj: PhotoDetailType) {
     this.photoDetail = obj
+    this.order = {
+      type: 1,
+      price: obj.ele_price,
+      opt_price: obj.ele_opt_price
+    }
+  }
+
+  // 设置订单类型 1->电子照  2->冲印包邮到家
+  @action setOrderType (type: number) {
+    if (type === 1) {
+      this.order = {
+        type,
+        price: this.photoDetail.ele_price,
+        opt_price: this.photoDetail.ele_opt_price
+      }
+    } else {
+      this.order = {
+        type,
+        price: this.photoDetail.obj_price,
+        opt_price: this.photoDetail.obj_opt_price
+      }
+    }
   }
   
 }

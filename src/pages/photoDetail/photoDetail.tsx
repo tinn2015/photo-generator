@@ -36,7 +36,7 @@ class PhotoDetail extends Component {
       loading: false
     }
   }
-  componentDidShow () {
+  componentDidMount () {
     this.getPhotoDetail()
   }
 
@@ -61,8 +61,6 @@ class PhotoDetail extends Component {
       sizeType: ['original'],
       sourceType: [type, 'user'],
       success: (res) => {
-        console.log(res)
-        // this.showLoadingToast()
         this.setState({
           loading: true
         })
@@ -94,19 +92,26 @@ class PhotoDetail extends Component {
     //     //do something
     //   }
     // })
-    const {bg_color} = this.props.photoStore.photoInfo
+    const {id} = this.props.photoStore.photoInfo
+    const {bg_color} = this.props.photoStore.photoDetail
+    const bgColor = bg_color.map((i) => {
+       return i.replace('#', '')
+    })
     upload({
       path,
-      data: {'bg-color': bg_color}
+      data: {'bg-color': bgColor.join(','), mid: id}
     }).then((res: PreviewInfo) => {
+      // debugger
       console.log('jobCreate', res)
       const { photoStore } = this.props
       photoStore.setPreviewInfo(res)
-      this.setState({
-        loading: false
-      })
       Taro.navigateTo({
-        url: '/pages/generatePhoto/generatePhoto'
+        url: '/pages/generatePhoto/generatePhoto',
+        complete: () => {
+          this.setState({
+            loading: false
+          })
+        }
       })
     })
   }
@@ -120,7 +125,7 @@ class PhotoDetail extends Component {
           <Image className='preview' src={preview.img || ''} />
           <View className='take-pic-desc flex fd-c jc-ad ai-fs'>
             {
-              preview.desc.length && preview.desc.map(item => {
+              preview.desc && preview.desc.length && preview.desc.map(item => {
                 return (
                   <View className='desc-item flex jc-c ai-c' key={item}>
                     <Image className='icon' src={preview.icon} />
@@ -135,7 +140,7 @@ class PhotoDetail extends Component {
           <View className='photo-title'>{photoDetail.title}</View>
           <View className='desc'>
           {
-            photoDetail.desc.length && photoDetail.desc.map(desc => {
+            photoDetail.desc && photoDetail.desc.length && photoDetail.desc.map(desc => {
               return (
                 <View key={desc} className='ft24 c-333 item'>{desc}</View>
               )
@@ -143,7 +148,7 @@ class PhotoDetail extends Component {
           }
             <View className='ft24 c-333 item flex ai-c'>
               背景色：{
-                photoDetail.bg_color.length && photoDetail.bg_color.map(color => {
+                photoDetail.bg_color && photoDetail.bg_color.length && photoDetail.bg_color.map(color => {
                   return <View key={color} className='color' style={{"background": color}}></View>
                 })
               }
