@@ -43,7 +43,9 @@ export interface Ad {
   img: string,
   title: string,
   desc: string,
-  url: string
+  url: string,
+  name: string,
+  icon: string
 }
 export interface LoginResult {
   code: string

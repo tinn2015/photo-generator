@@ -1,20 +1,21 @@
 .post-address {
-  // height: 100vh;
+  height: 100vh;
   background: #eee;
-  padding: 20px 20px 100px 20px;
-  overflow: hidden;
+  padding: 15px 15px 100px 15px;
+  overflow-x: hidden;
+  overflow-y: auto;
   .card {
     border-radius: 30px;
-    padding: 30px;
-    margin-top: 20px;
+    padding: 20px;
+    margin-top: 15px;
   }
   .photo-info {
     .photo-info-item {
-      margin-top: 10px;
+      margin-top: 5px;
     }
   }
   .preview-box {
-    padding: 20px;
+    padding: 10px;
     .photo-preview {
       width: 200px;
       height: 240px;
@@ -37,13 +38,15 @@
     }
   }
   .bottom-bar {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    padding: 20px;
-    border-top: 1px solid #eee;
-    background: #eaeaea;
-    z-index: 10;
+    // position: fixed;
+    // bottom: 0;
+    // left: 0;
+    // padding: 20px;
+    margin-top: 20px;
+    // border-top: 1px solid #eee;
+    // background: #eaeaea;
+    // background: #ffffff;
+    // z-index: 10;
     .at-button {
       margin: 0
     }
@@ -55,10 +58,17 @@
   .photo-info-label {
     margin-left: 10px;
   }
-  .at-input {
-    padding: 16px 0;
-    input, .at-input__title {
-      font-size: 24px;
-    }
+  // .at-input {
+  //   padding: 16px 0;
+  //   input, .at-input__title {
+  //     font-size: 24px;
+  //   }
+  // }
+  .picker-view-indicator {
+    height: 70px;
+    line-height: 70px;
+  }
+  .picker-column {
+    line-height: 70px
   }
 }

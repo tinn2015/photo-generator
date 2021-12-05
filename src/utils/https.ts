@@ -6,12 +6,14 @@ const baseUrl = 'https://api.itso123.com/v2/wxmp/'
 
 const urls:Record<string, string> = {
   homeGetData: baseUrl + 'home/get_data',
-  getHotKeys: baseUrl + 'home/get_hotkeys',
+  getHotKeys: baseUrl + 'search/get_hotkeys',
   searchGoods: baseUrl + 'photos/search_goods',
   getPhotoDetail: baseUrl + 'photos/get_photo_detail',
   photoCreate: baseUrl + 'photos/job_create',
   photoGetData: baseUrl + 'photos/get_data',
-  login: baseUrl + 'weixin/login'
+  login: baseUrl + 'weixin/login',
+  createPayOrder: baseUrl + 'photos/pay_order_create',
+  getRegionAddress: baseUrl + 'me/get_address_pcarea'
 }
 
 export const homeGetData = (data) => {
@@ -58,6 +60,22 @@ export const login = (data) => {
     }
   }
   return checkMock(option, data, 'login')
+}
+
+export const createPayOrder = (data) => {
+  const option = {
+    url: urls.createPayOrder,
+    post: true
+  }
+  return checkMock(option, data, 'createPayOrder')
+}
+
+export const getRegionAddress = (data) => {
+  const option = {
+    url: urls.getRegionAddress,
+    post: true
+  }
+  return checkMock(option, data, 'getRegionAddress')
 }
 
 interface uploadOption {

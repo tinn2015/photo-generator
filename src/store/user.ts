@@ -1,58 +1,26 @@
 import {action, computed, observable} from 'mobx'
 import Taro from '@tarojs/taro'
 
+interface UserInfo {
+  avatarUrl: string,
+  nickName: string,
+  openId: string
+}
 
-export class UserStore {
-  // @observable setting: Record<string, boolean> | {}
-  @observable size: string
-  @observable info: Record<string, string> | {}
-  
-  @action getAuthorize (scope: string, callback: Function) {
-    Taro.getSetting({
-      success: (res) => {
-        const {authSetting} = res
-        console.log('auchSetting', authSetting)
-        if (!authSetting[scope]) {
-          Taro.authorize({
-            scope: scope,
-            success: () => {
-              callback()
-            }
-          })
-        }
-      }
-    })
+export class User {
+  @observable userInfo: UserInfo = {
+    avatarUrl: '',
+    nickName: '',
+    openId: ''
   }
-
-  @action getUserInfo () {
-    // this.getAuthorize('scope.userInfo', () => {
-    //   debugger
-    //   Taro.getUserInfo({
-    //     success: (res) => {
-    //       this.info = res.userInfo
-    //     },
-    //     fail: (err) => {
-    //       console.log(err)
-    //     }
-    //   })
-    // })
-    // Taro.getUserInfo({
-    //   success: (res) => {
-    //     console.log('userInfo', res)
-    //     this.info = res.userInfo
-    //   },
-    //   fail: (err) => {
-    //     console.log(err)
-    //   }
-    // })
-    Taro.getUserProfile({
-      desc: '用于会员信息',
-      success: (res) => {
-        console.log('userInfo', res)
-      }
-    })
+  @action setUserInfo (info) {
+    this.userInfo = Object.assign(this.userInfo, info)
+    Taro.setStorage({key: 'userInfo', data: info})
+  }
+  @action getUserInfoFromStorage () {
+    this.userInfo = Taro.getStorageSync('userInfo')
   }
 }
 
 
-export default new UserStore()
+export default new User()

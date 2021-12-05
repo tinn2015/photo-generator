@@ -1,10 +1,20 @@
 import { Component } from 'react'
+import { inject, observer } from 'mobx-react'
 import Taro from '@tarojs/taro'
 import { View, Image } from '@tarojs/components'
 import LoginModal from '../../components/loginModal/loginModal'
+import { User } from '../../store//user'
 
 import './my.scss'
 
+interface My {
+  props: {
+    userStore: User
+  }
+}
+
+@inject('userStore')
+@observer
 class My extends Component {
   constructor (props) {
     super(props)
@@ -29,11 +39,18 @@ class My extends Component {
   render () {
     const paymentIcon = this.state.payment
     const ordersIcon = this.state.orders
+    const { userStore } = this.props
+    const { userInfo = {
+      avatarUrl: '',
+      nickName: ''
+    } } = userStore
+    console.log('my userStore', userStore)
     return (
       <View className='my-container flex fd-c fs-c jc-sb'>
         <View className='my-top-header w-100 flex ai-c'>
-          <View className='my-avatar'></View>
-          <View className='my-label c-333'>这是昵称</View>
+          {/* <View className='my-avatar'></View> */}
+          <Image className='my-avatar' src={userInfo.avatarUrl} />
+          <View className='my-label c-333'>{userInfo.nickName}</View>
         </View>
         <View className='my-content w-100'>
           <View className='my-state bg-fff card flex jc-ad ai-c'>
@@ -85,7 +102,7 @@ class My extends Component {
             </View>
           </View>
         </View>
-        <LoginModal></LoginModal>
+        <LoginModal userStore={userStore}></LoginModal>
       </View>
     )
   }

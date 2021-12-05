@@ -24,7 +24,10 @@
       "global.d.ts"
     ],
     "paths": {
-      "@/utils/*": ["./src/utils/*"]
+      "@/utils/*": ["./src/utils/*"],
+      "@/https": ["./src/utils/https"],
+      "@/types": ["./src/types"],
+      "@/components": ["./srccomponents"],
     },
   },
   "exclude": [

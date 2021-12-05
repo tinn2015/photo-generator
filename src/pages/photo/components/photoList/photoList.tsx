@@ -44,9 +44,9 @@ class PhotoList extends Component {
       <View className='photo-list'>
         {
           ad && <View className='photo-ad-holder flex jc-c ai-c' onClick={() => {this.openWebview(ad)}}>
-            <Image className='image' src={ad.img} />
-            <View className='title c-fff'>{ad.title}</View>
-            <View className='desc c-fff ft24'>{ad.desc}</View>
+            <Image className='image' src={ad.icon} />
+            <View className='title c-fff'>{ad.name}</View>
+            {/* <View className='desc c-fff ft24'>{ad.desc}</View> */}
           </View>
         }
         <View className='photo-list-content'>

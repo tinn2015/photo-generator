@@ -4,6 +4,8 @@ import { View, Image } from '@tarojs/components'
 import { AtButton } from 'taro-ui'
 import Taro from '@tarojs/taro'
 import { Photo } from '../../../../store/photo'
+import { createPayOrder } from '../../../../utils/https'
+
 
 import './generateorder.scss'
 
@@ -45,9 +47,14 @@ class GenerateOrder extends Component {
     const {order} = this.props.photoStore
     if (order.type === 1) {
       console.log('去支付')
+      this.props.photoStore.requestPayment()
+      // requestPayment()
     } else {
+      const { selectBg } = this.props
+      const { optionServiceChecked } = this.state
+      const price = (optionServiceChecked ? order.price + order.opt_price : order.price).toFixed(1)
       Taro.navigateTo({
-        url: '/pages/postAddress/postAddress'
+        url: `/pages/postAddress/postAddress?selectBg=${selectBg}&price=${price}`
       })
     }
     // Taro.requestPayment({

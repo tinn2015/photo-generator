@@ -1,7 +1,9 @@
 import { Component } from 'react'
+import { inject } from 'mobx-react/'
 import Taro from '@tarojs/taro'
 import { View, Button, Image } from '@tarojs/components'
 import { AtModal, AtModalHeader, AtModalContent, AtModalAction } from "taro-ui"
+import {User} from '../../store/user'
 import { login } from '../../utils/https'
 
 import './loginModal.scss';
@@ -12,19 +14,36 @@ interface LoginModal {
     isOpened: boolean,
     canIUseGetUserProfile: boolean
   }
+  props: {
+    userStore: User
+  }
 }
 
+@inject('userStore')
 class LoginModal extends Component {
   constructor (props) {
     super(props)
     this.state = {
       weChatLogo: require('../../assets/wechat.png'),
-      isOpened: true,
+      isOpened: false,
       canIUseGetUserProfile: false
     }
   }
 
   componentDidMount () {
+    Taro.checkSession({
+      success: () => {
+        this.props.userStore.getUserInfoFromStorage()
+        this.setState({
+          isOpened: false
+        })
+      },
+      fail: () => {
+        this.setState({
+          isOpened: true
+        })
+      }
+    })
     // @ts-ignore
     if (Taro.getUserProfile) {
       this.setState({
@@ -36,8 +55,8 @@ class LoginModal extends Component {
   getUserInfo = () => {
     Taro.getUserInfo({
       success: (res) => {
-        var userInfo = res.userInfo
-        this.setStorage('userInfo', userInfo)
+        const userInfo = res.userInfo
+        this.props.userStore.setUserInfo(userInfo)
       }
     })
   }
@@ -47,7 +66,8 @@ class LoginModal extends Component {
       success: (res) => {
         console.log('login', res)
         login({code: res.code}).then(loginRes => {
-          console.log(loginRes)
+          console.log('登录成功', loginRes)
+          this.props.userStore.setUserInfo({openId: loginRes.openid})
         })
       }
     })
@@ -56,15 +76,11 @@ class LoginModal extends Component {
       success: (res) => {
         console.log(res)
         const userInfo = res.userInfo
-        this.setStorage('userInfo', userInfo)
+        this.props.userStore.setUserInfo(userInfo)
+        this.setState({
+          isOpened: false
+        })
       }
-    })
-  }
-
-  setStorage = (key, data) => {
-    Taro.setStorage({
-      key,
-      data
     })
   }
 

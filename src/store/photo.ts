@@ -1,4 +1,5 @@
 import {action, computed, observable} from 'mobx'
+import { createPayOrder } from '../utils/https'
 
 
 export interface PhotoInfo {
@@ -12,7 +13,8 @@ export interface PhotoInfo {
 export interface PreviewInfo {
   preview: Record<string, string>,
   price: number,
-  option_service: number
+  option_service: number,
+  job_id: string
 }
 
 export interface PhotoDetailType {
@@ -94,6 +96,27 @@ export class Photo {
         opt_price: this.photoDetail.obj_opt_price
       }
     }
+  }
+
+  // 发起支付
+  @action requestPayment () {
+    createPayOrder({
+      job_id: this.previewInfo.job_id
+    }).then(payInfo => {
+      Taro.requestPayment({
+        timeStamp: '',
+        nonceStr: '',
+        package: payInfo.prepay_id,
+        signType: 'MD5',
+        paySign: '',
+        success: (res) => {
+          console.log('paySuccess', res)
+        },
+        fail: (res) => {
+          console.log('payError', res)
+        }
+      })
+    })
   }
   
 }
