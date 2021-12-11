@@ -1,4 +1,5 @@
 import {action, computed, observable} from 'mobx'
+import Taro from '@tarojs/taro'
 import { createPayOrder } from '../utils/https'
 
 

@@ -1,0 +1,17 @@
+@import '../../../global';
+.balance {
+  padding: 40px;
+  .balance-item {
+    width: 100%;
+    margin-top: 20px;
+    border-radius: 16px;
+    height: 120px;
+    background: $global-bg;
+    .balance-item-left {
+      width: 150px;
+    }
+    .balance-item-right {
+      flex-grow: 1;
+    }
+  }
+}

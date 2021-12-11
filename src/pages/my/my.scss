@@ -37,7 +37,17 @@
     }
     .other-services {
       .services {
-        margin-top: 20px;
+        margin-top: 30px;
+      }
+      .open-contact {
+        border: none;
+        background: none;
+        margin: 0;
+        padding: 0;
+        border-radius: 0;
+        &::after{
+          border: none;
+        }
       }
     }
     .icon {

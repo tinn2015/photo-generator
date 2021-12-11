@@ -8,6 +8,8 @@
 @import "~taro-ui/dist/style/components/toast.scss";
 @import "~taro-ui/dist/style/components/icon.scss";
 @import "~taro-ui/dist/style/components/modal.scss";
+@import "~taro-ui/dist/style/components/badge.scss";
+@import "~taro-ui/dist/style/components/tabs.scss";
 
 @import'./global.scss';
 
@@ -101,4 +103,8 @@ view {
 
 .ft20 {
   font-size: 20px
+}
+
+.text-center {
+  text-align: center;
 }

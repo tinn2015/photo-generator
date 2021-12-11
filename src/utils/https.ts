@@ -13,7 +13,13 @@ const urls:Record<string, string> = {
   photoGetData: baseUrl + 'photos/get_data',
   login: baseUrl + 'weixin/login',
   createPayOrder: baseUrl + 'photos/pay_order_create',
-  getRegionAddress: baseUrl + 'me/get_address_pcarea'
+  getRegionAddress: baseUrl + 'me/get_address_pcarea',
+  getMyData: baseUrl + 'me/get_data',
+  getCooperation: baseUrl + 'me/get_cooperation_contact',
+  normalQuestion: baseUrl + 'me/get_normal_question',
+  getMyBalance: baseUrl + 'me/get_goods_detail',
+  getMyAddress: baseUrl + 'me/get_my_address',
+  pointsRecord: baseUrl + 'me/get_points_detail',
 }
 
 export const homeGetData = (data) => {
@@ -76,6 +82,79 @@ export const getRegionAddress = (data) => {
     post: true
   }
   return checkMock(option, data, 'getRegionAddress')
+}
+
+export const getMyData = (data) => {
+  const option = {
+    url: urls.getMyData,
+    post: true
+  }
+  return checkMock(option, data, 'getMyData')
+}
+
+/** 渠道合作
+ * 
+ * @param data 
+ * @returns 
+ */
+export const getCooperation = (data) => {
+  const option = {
+    url: urls.getCooperation,
+    post: true
+  }
+  return checkMock(option, data, 'getCooperation')
+}
+
+/** 常见问题
+ * 
+ * @param data 
+ * @returns 
+ */
+export const normalQuestion = (data) => {
+  const option = {
+    url: urls.normalQuestion,
+    post: true
+  }
+  return checkMock(option, data, 'normalQuestion')
+}
+
+/** 我的优惠券
+ * 
+ * @param data 
+ * @returns 
+ */
+export const getMyBalance = (data) => {
+  const option = {
+    url: urls.getMyBalance,
+    post: true
+  }
+  return checkMock(option, data, 'getMyBalance')
+}
+
+/** 我的收货地址
+ * 
+ * @param data 
+ * @returns 
+ */
+export const getMyAddress = (data) => {
+  const option = {
+    url: urls.getMyAddress,
+    post: true
+  }
+  return checkMock(option, data, 'getMyAddress')
+}
+
+/** 积分记录
+ * 
+ * @param data 
+ * @returns 
+ */
+export const pointsRecord = (data) => {
+  const option = {
+    url: urls.pointsRecord,
+    post: true
+  }
+  return checkMock(option, data, 'pointsRecord')
 }
 
 interface uploadOption {
