@@ -13,8 +13,6 @@ export default {
     'pages/mySubPages/address/address',
     'pages/mySubPages/pointsRecord/pointsRecord',
     'pages/webview/webview',
-    'pages/index/index',
-    'pages/demo/index',
   ],
   window: {
     backgroundTextStyle: 'light',

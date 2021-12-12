@@ -4,11 +4,20 @@ import { getMenuButtonBoundingClientRect } from '@/utils/index'
 import Taro, { getCurrentInstance } from '@tarojs/taro'
 import { AtForm, AtInput, AtList, AtListItem, AtButton, AtFloatLayout } from 'taro-ui'
 import { inject } from 'mobx-react'
-import { getRegionAddress } from '@/https'
+import { getRegionAddress, getMyAddress } from '@/https'
 import { Photo } from '../../store/photo'
+import { User } from '../../store/user'
 
 import './postAddress.scss'
 
+interface Address {
+  province: string
+  city: string
+  area: string
+  road: string
+  receiver: string
+  tel: string
+}
 interface PostAddress {
   state: {
     checkboxIcon: string
@@ -24,6 +33,7 @@ interface PostAddress {
       value: Array<number>,
       cityWithArea: Record<string, string[]>
     },
+    usedAddress: Address
     // addressForm: {
     //   region: string,
     //   address: string,
@@ -32,11 +42,12 @@ interface PostAddress {
     // }
   },
   props: {
-    photoStore: Photo
+    photoStore: Photo,
+    userStore: User
   }
 }
 
-@inject('photoStore')
+@inject('photoStore', 'userStore')
 class PostAddress extends Component {
   constructor (props) {
     super(props)
@@ -53,6 +64,7 @@ class PostAddress extends Component {
         area: [],
         value: [2, 4, 0]
       },
+      usedAddress: {}
       // addressForm: {
       //   region: '',
       //   address: '',
@@ -70,6 +82,10 @@ class PostAddress extends Component {
       selectBg,
       price
     })
+    
+    // 获取已有地址
+    this.getMyAddress()
+
     // 获取省市区
     this.getRegion(null)
   }
@@ -92,6 +108,16 @@ class PostAddress extends Component {
   // onReset = (event) => {
   //   console.log(this.state.value)
   // }
+
+  getMyAddress = () => {
+    const {openId} = this.props.userStore.userInfo
+    if (!openId) return
+    getMyAddress({openid: openId}).then(res => {
+      this.setState({
+        usedAddress: res.address[0]
+      })
+    })
+  }
 
   getRegion = (province) => {
     getRegionAddress({province}).then(res => {
@@ -175,7 +201,7 @@ class PostAddress extends Component {
   }
 
   render () {
-    const {checkboxIcon, selectBg, price, regionPickerVisible, address} = this.state
+    const {checkboxIcon, selectBg, price, regionPickerVisible, address, usedAddress} = this.state
     // const {region} = this.state
     const { photoDetail, previewInfo, order } = this.props.photoStore
     return (
@@ -213,6 +239,7 @@ class PostAddress extends Component {
               title='地区'
               type='text'
               required
+              value={usedAddress.province}
               placeholder='选择地区'
               onFocus={this.openFloatLayout}
               onChange={(v) => {console.log(v)}}
