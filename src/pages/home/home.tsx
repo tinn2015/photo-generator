@@ -1,15 +1,15 @@
 import { Component } from 'react'
 import { View } from '@tarojs/components'
 import { getMenuButtonBoundingClientRect } from '@/utils/index'
-import Taro from '@tarojs/taro'
 import { inject } from 'mobx-react'
 import { homeGetData } from '@/utils/https'
 import CommonSearch from '../../components/commonSearch/commonSearch'
+import LoginModal from '../../components/loginModal/loginModal'
 import { HomeData } from '../../types/'
 import Banner from './components/banner/banner'
 import HotSearch from './components/hotSearch/hotSearch'
 import HotGoods from './components/hotGoods//hotGoods'
-import { UserStore } from '../../store/user'
+import { User } from '../../store/user'
 import { PhotoInfo, Photo } from '../../store/photo'
 
 import './home.scss'
@@ -24,7 +24,7 @@ interface Home {
     goods: Array<PhotoInfo>
   },
   props: {
-    userStore: UserStore,
+    userStore: User,
     searchTips: string,
     photoStore: Photo
   }
@@ -46,6 +46,8 @@ class Home extends Component {
   }
 
   componentDidMount () {
+    // 获取登录信息
+    this.props.userStore.getUserInfoFromStorage()
     const { userStore, photoStore } = this.props
     console.log('store', userStore, photoStore)
     // userStore.getUserInfo()
@@ -71,7 +73,7 @@ class Home extends Component {
 
   render () {
     const {menuButtonRect, bannerBg, bannerBtn, searchTip, searchHotKeys, goods} = this.state
-    const { photoStore } = this.props
+    const { photoStore, userStore } = this.props
     return (
       <View className='home flex fd-c'>
         <View className='title flex jc-c ai-c' style={{top: menuButtonRect.top}}>一分钟证件照</View>
@@ -79,6 +81,7 @@ class Home extends Component {
         <CommonSearch searchTip={searchTip}></CommonSearch>
         <HotSearch photoStore={photoStore} searchHotKeys={searchHotKeys}></HotSearch>
         <HotGoods photoStore={photoStore} hotGoods={goods}></HotGoods>
+        <LoginModal userStore={userStore}></LoginModal>
       </View>
     )
   }

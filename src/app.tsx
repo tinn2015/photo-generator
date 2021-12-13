@@ -1,6 +1,5 @@
 import { Component } from 'react'
-import { Provider, inject } from 'mobx-react'
-import Taro from '@tarojs/taro'
+import { Provider } from 'mobx-react'
 
 import counterStore from './store/counter'
 import demoStore from './store/demo'
@@ -19,11 +18,9 @@ const store = {
 class App extends Component {
 
   componentDidMount () {
-    console.log('userStore', userStore)
   }
 
   componentDidShow () {
-    console.log('didshow')
   }
 
   componentDidHide () {}
@@ -31,7 +28,6 @@ class App extends Component {
   componentDidCatchError () {}
 
   onLaunch () {
-    console.log('onLaunch')
   }
 
   // this.props.children 就是要渲染的页面

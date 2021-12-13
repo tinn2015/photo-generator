@@ -74,8 +74,8 @@ class LoginModal extends Component {
     Taro.getUserProfile({
       desc: '完善会员资料',
       success: (res) => {
-        console.log(res)
         const userInfo = res.userInfo
+        console.log('getUserProfile', userInfo)
         this.props.userStore.setUserInfo(userInfo)
         this.setState({
           isOpened: false

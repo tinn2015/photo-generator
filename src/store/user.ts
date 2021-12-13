@@ -14,8 +14,8 @@ export class User {
     openId: ''
   }
   @action setUserInfo (info) {
-    this.userInfo = Object.assign(this.userInfo, info)
-    Taro.setStorage({key: 'userInfo', data: this.userInfo})
+    this.userInfo = Object.assign({}, this.userInfo, info)
+    Taro.setStorageSync('userInfo', this.userInfo)
   }
   @action getUserInfoFromStorage () {
     this.userInfo = Taro.getStorageSync('userInfo')

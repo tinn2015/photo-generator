@@ -21,9 +21,12 @@ interface Address {
 interface PostAddress {
   state: {
     checkboxIcon: string
+    wechatLogo: string
+    ztoLogo: string
     // region: Array<string>
     selectBg: string,
     price: number,
+    optionServiceChecked: boolean,
     value: string
     regionPickerVisible: boolean,
     address: {
@@ -53,9 +56,11 @@ class PostAddress extends Component {
     super(props)
     this.state = {
       checkboxIcon: require('../../assets/checkbox.png'),
+      wechatLogo: require('../../assets/weChat.png'),
+      ztoLogo: require('../../assets/zto.png'),
       selectBg: '',
       price: 0,
-      value: '',
+      optionServiceChecked: false,
       regionPickerVisible: false,
       address: {
         province: [],
@@ -77,10 +82,11 @@ class PostAddress extends Component {
   
   componentDidMount () {
     // @ts-ignore
-    const {selectBg, price} = getCurrentInstance().router?.params
+    const {selectBg, price, optionServiceChecked} = getCurrentInstance().router?.params
     this.setState({
       selectBg,
-      price
+      price,
+      optionServiceChecked
     })
     
     // 获取已有地址
@@ -195,13 +201,19 @@ class PostAddress extends Component {
   }
 
   submit = () => {
-    console.log(this.addressForm)
-    const {photoStore} = this.props
-    photoStore.requestPayment()
+    const {order} = this.props.photoStore
+    const {optionServiceChecked} = this.state
+    const params = {
+      job_id: this.props.photoStore.photoInfo.id,
+      openid: this.props.userStore.userInfo.openId,
+      amount: optionServiceChecked ? order.price + order.opt_price : order.price,
+      opt_service: optionServiceChecked ? 1 : 0
+    }
+    this.props.photoStore.requestPayment(params)
   }
 
   render () {
-    const {checkboxIcon, selectBg, price, regionPickerVisible, address, usedAddress} = this.state
+    const {checkboxIcon, wechatLogo, ztoLogo, selectBg, price, regionPickerVisible, address, usedAddress} = this.state
     // const {region} = this.state
     const { photoDetail, previewInfo, order } = this.props.photoStore
     return (
@@ -228,18 +240,31 @@ class PostAddress extends Component {
           </View>
         </View>
         <View className='pay-express card bg-fff'>
-          <View className='ft28'>支付方式</View>
-          <View className='ft28'>配送方式</View>
+          <View className='pay ft28 flex jc-sb ai-c'>
+            <View>支付方式:</View>
+            <View className='value flex jc-c ai-c'>
+              <View className='label ft24'>微信支付</View>
+              <Image className='img' mode='aspectFit' src={wechatLogo} />
+            </View>
+          </View>
+          <View className='express ft28 flex jc-sb ai-c'>
+            <View>配送方式:</View>
+            <View className='value flex jc-c ai-c'>
+              <View className='label ft24'>中通快递</View>
+              <Image className='img' mode='aspectFit' src={ztoLogo} />
+            </View>
+          </View>
         </View>
         <View className='card bg-fff'>
           <View className='ft28'>收件地址</View>
-          <View className='address-form'>
+          <View className='address-form ft24'>
             <AtInput
               name='region'
               title='地区'
+              className='input'
               type='text'
               required
-              value={usedAddress.province}
+              value={usedAddress.province + usedAddress.city + usedAddress.area}
               placeholder='选择地区'
               onFocus={this.openFloatLayout}
               onChange={(v) => {console.log(v)}}
@@ -247,32 +272,37 @@ class PostAddress extends Component {
             <AtInput
               name='address'
               title='地址'
-              type='phone'
+              type='text'
+              value={usedAddress.road}
               required
               placeholder='输入详细地址'
               onChange={(e) => this.setAddress(e)}
+              className='input'
             />
             <AtInput
               name='name'
               title='收货人'
               type='text'
+              value={usedAddress.receiver}
               required
               placeholder='输入收货人姓名'
               onChange={(v) => {this.addressForm.name = v}}
+              className='input'
             />
             <AtInput
               name='phone'
               title='手机号'
               required
               type='phone'
-              error
               placeholder='输入手机号码'
+              value={usedAddress.tel}
               onChange={(v) => {this.addressForm.phone = v;}}
+              className='input'
             />
           </View>
         </View>
         <View className='bottom-bar w-100 flex jc-sb ai-c bg-fff card'>
-          <View>合计：¥{price}</View>
+          <View className='flex'>合计：<View className='c-ff5722'>¥{price}</View></View>
           <AtButton type='primary' size='small' onClick={this.submit}>提交订单</AtButton>
         </View>
         <CoverView style='position: relative;z-index: 100; overflow: hidden'>

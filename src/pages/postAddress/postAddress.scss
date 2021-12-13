@@ -23,6 +23,21 @@
     }
   }
   .pay-express {
+    .pay {
+    }
+    .express {
+      margin-top: 10px;
+    }
+    .img {
+      width: 50px;
+      height: 50px
+    }
+    .label {
+      margin-right: 20px;
+    }
+    .value {
+      width: 200px
+    }
   }
   .address-form {
     // padding: 20px 30px;
@@ -35,6 +50,12 @@
     }
     .at-list__item {
       padding: 16px 0
+    }
+    .at-input__input {
+      font-size: 24px;
+    }
+    .at-input__title .at-input__title--required {
+      font-size: 28px;
     }
   }
   .bottom-bar {

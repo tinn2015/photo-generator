@@ -96,7 +96,6 @@ class My extends Component {
       avatarUrl: '',
       nickName: ''
     } } = userStore
-    console.log('my userStore', userStore)
     return (
       <View className='my-container flex fd-c fs-c jc-sb'>
         <View className='my-top-header w-100 flex ai-c'>

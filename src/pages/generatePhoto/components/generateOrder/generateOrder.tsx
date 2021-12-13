@@ -4,7 +4,7 @@ import { View, Image } from '@tarojs/components'
 import { AtButton } from 'taro-ui'
 import Taro from '@tarojs/taro'
 import { Photo } from '../../../../store/photo'
-import { createPayOrder } from '../../../../utils/https'
+import { User } from '../../../../store/user'
 
 
 import './generateorder.scss'
@@ -16,6 +16,7 @@ interface GenerateOrder {
   props: {
     selectBg: string,
     photoStore: Photo
+    userStore: User
   }
 }
 
@@ -30,9 +31,6 @@ class GenerateOrder extends Component {
   }
 
   toggleTab = (flag: number) => {
-    // this.setState({
-    //   activeTab: flag
-    // })
     this.props.photoStore.setOrderType(flag)
   }
 
@@ -45,23 +43,22 @@ class GenerateOrder extends Component {
 
   requestOrAddress = () => {
     const {order} = this.props.photoStore
+    const {optionServiceChecked} = this.state
     if (order.type === 1) {
-      console.log('去支付')
-      this.props.photoStore.requestPayment()
-      // requestPayment()
+      const params = {
+        job_id: this.props.photoStore.photoInfo.id,
+        openid: this.props.userStore.userInfo.openId,
+        amount: optionServiceChecked ? order.price + order.opt_price : order.price,
+        opt_service: optionServiceChecked ? 1 : 0
+      }
+      this.props.photoStore.requestPayment(params)
     } else {
       const { selectBg } = this.props
-      const { optionServiceChecked } = this.state
       const price = (optionServiceChecked ? order.price + order.opt_price : order.price).toFixed(1)
       Taro.navigateTo({
-        url: `/pages/postAddress/postAddress?selectBg=${selectBg}&price=${price}`
+        url: `/pages/postAddress/postAddress?selectBg=${selectBg}&price=${price}&optionServiceChecked=${optionServiceChecked}`
       })
     }
-    // Taro.requestPayment({
-    //   success: (res) => {
-    //     console.log(res)
-    //   }
-    // })
   }
 
   render () {

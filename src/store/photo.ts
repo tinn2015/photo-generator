@@ -100,10 +100,8 @@ export class Photo {
   }
 
   // 发起支付
-  @action requestPayment () {
-    createPayOrder({
-      job_id: this.previewInfo.job_id
-    }).then(payInfo => {
+  @action requestPayment (params) {
+    createPayOrder(params).then(payInfo => {
       Taro.requestPayment({
         timeStamp: '',
         nonceStr: '',

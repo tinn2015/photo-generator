@@ -4,6 +4,7 @@ import { AtButton, AtFloatLayout } from 'taro-ui'
 import { observer, inject } from 'mobx-react'
 import Taro from '@tarojs/taro'
 import { Photo } from '../../store/photo'
+import { User } from '../../store/user'
 import GenerateOrder from './components/generateOrder/generateOrder'
 
 import './generatePhoto.scss'
@@ -16,11 +17,12 @@ interface GeneratePhoto {
     colorList: Array<string>
   },
   props: {
-    photoStore: Photo
+    photoStore: Photo,
+    userStore: User
   }
 }
 
-@inject('photoStore')
+@inject('photoStore', 'userStore')
 @observer
 class GeneratePhoto extends Component {
   constructor (props) {
@@ -63,7 +65,7 @@ class GeneratePhoto extends Component {
 
   render () {
     const {changeIconBg, openPopup, selectedBg, colorList} = this.state
-    const { photoStore } = this.props
+    const { photoStore, userStore } = this.props
     const {photoStore: {previewInfo: {preview }, photoDetail: {desc}}} = this.props
     return(
       <View className='generatePhoto-container flex fd-c jc-sb'>
@@ -99,7 +101,7 @@ class GeneratePhoto extends Component {
           </View>
         </View>
         <AtFloatLayout isOpened={openPopup} onClose={this.togglePopup}>
-          <GenerateOrder photoStore={photoStore} selectBg={selectedBg}></GenerateOrder>
+          <GenerateOrder photoStore={photoStore} userStore={userStore} selectBg={selectedBg}></GenerateOrder>
         </AtFloatLayout>
       </View>
     )
