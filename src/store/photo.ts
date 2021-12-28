@@ -102,12 +102,17 @@ export class Photo {
   // 发起支付
   @action requestPayment (params) {
     createPayOrder(params).then(payInfo => {
+      console.log("payInfo", payInfo)
+      if (payInfo.result === -1) {
+        console.log(payInfo.reason)
+        return
+      }
       Taro.requestPayment({
-        timeStamp: '',
-        nonceStr: '',
-        package: payInfo.prepay_id,
-        signType: 'MD5',
-        paySign: '',
+        timeStamp: payInfo.timeStamp,
+        nonceStr: payInfo.nonceStr,
+        package: payInfo.prepayId,
+        signType: payInfo.signType,
+        paySign: payInfo.paySign,
         success: (res) => {
           console.log('paySuccess', res)
         },

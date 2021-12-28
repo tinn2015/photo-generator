@@ -9,6 +9,7 @@ export default {
     'pages/photoDetail/photoDetail',
     'pages/mySubPages/channelCooperation/channelCooperation',
     'pages/mySubPages/myBalance/myBalance',
+    'pages/mySubPages/myOrders/myOrders',
     'pages/mySubPages/problems/problems',
     'pages/mySubPages/address/address',
     'pages/mySubPages/pointsRecord/pointsRecord',

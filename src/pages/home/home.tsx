@@ -78,7 +78,7 @@ class Home extends Component {
       <View className='home flex fd-c'>
         <View className='title flex jc-c ai-c' style={{top: menuButtonRect.top}}>一分钟证件照</View>
         <Banner bannerBg={bannerBg} bannerBtn={bannerBtn}></Banner>
-        <CommonSearch searchTip={searchTip}></CommonSearch>
+        <CommonSearch searchTip={searchTip} photoStore={photoStore}></CommonSearch>
         <HotSearch photoStore={photoStore} searchHotKeys={searchHotKeys}></HotSearch>
         <HotGoods photoStore={photoStore} hotGoods={goods}></HotGoods>
         <LoginModal userStore={userStore}></LoginModal>

@@ -87,6 +87,12 @@ class My extends Component {
     })
   }
 
+  routerToMyOrders = (type) => {
+    Taro.navigateTo({
+      url: `/pages/mySubPages/myOrders/myOrders?type=${type}`
+    })
+  }
+
   render () {
     const paymentIcon = this.state.payment
     const { balance, couponCount, points, toBePaid } = this.state
@@ -122,13 +128,13 @@ class My extends Component {
             <View className='orders-title'>我的订单</View>
             <View className='orders flex jc-ad ai-c'>
               <AtBadge value={toBePaid || undefined} maxValue={99}>
-                <View className='flex fd-c jc-c ai-c'>
+                <View className='flex fd-c jc-c ai-c' onClick={() => {this.routerToMyOrders('needPay')}}>
                   <View className='icon flex jc-c ai-c'><Image className='icon' mode='scaleToFill' src={paymentIcon} /></View>
                   <View className='label ft20 c-333'>待支付</View>
                 </View>
               </AtBadge>
               <AtBadge value={toBePaid || undefined} maxValue={99}>
-                <View className='flex fd-c jc-c ai-c'>
+                <View className='flex fd-c jc-c ai-c' onClick={() => {this.routerToMyOrders('all')}}>
                   <View className='icon flex jc-c ai-c'><Image className='icon' mode='scaleToFill' src={ordersIcon} /></View>
                   <View className='label ft20 c-333'>全部订单</View>
                 </View>

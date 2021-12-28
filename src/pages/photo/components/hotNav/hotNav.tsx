@@ -8,7 +8,8 @@ interface HotNav {
     currentSelected: string | null,
   },
   props: {
-    searchHotKeys: Array<string>
+    searchHotKeys: Array<string>,
+    searchGoods: (key: string | null) => void
   }
 }
 
@@ -42,6 +43,7 @@ class HotNav extends Component {
   }
 
   navSelected = (key: string | null) => {
+    this.props.searchGoods(key)
     this.setState({
       currentSelected: key
     })

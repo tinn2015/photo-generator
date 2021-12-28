@@ -15,7 +15,7 @@ class MyWebView extends Component {
     this.state = {
       url: ''
     }
-  }ß
+  }
   
   componentWillMount () {
     console.log(this.$instance)

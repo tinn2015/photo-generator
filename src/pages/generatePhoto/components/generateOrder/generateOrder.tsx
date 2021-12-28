@@ -46,7 +46,7 @@ class GenerateOrder extends Component {
     const {optionServiceChecked} = this.state
     if (order.type === 1) {
       const params = {
-        job_id: this.props.photoStore.photoInfo.id,
+        job_id: this.props.photoStore.previewInfo.job_id,
         openid: this.props.userStore.userInfo.openId,
         amount: optionServiceChecked ? order.price + order.opt_price : order.price,
         opt_service: optionServiceChecked ? 1 : 0

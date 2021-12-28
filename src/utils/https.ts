@@ -20,6 +20,7 @@ const urls:Record<string, string> = {
   getMyBalance: baseUrl + 'me/get_goods_detail',
   getMyAddress: baseUrl + 'me/get_my_address',
   pointsRecord: baseUrl + 'me/get_points_detail',
+  queryOrders: baseUrl + 'me/query_pay_order',
 }
 
 export const homeGetData = (data) => {
@@ -155,6 +156,19 @@ export const pointsRecord = (data) => {
     post: true
   }
   return checkMock(option, data, 'pointsRecord')
+}
+
+/** 订单查询
+ * 
+ * @param data 
+ * @returns 
+ */
+export const queryOrders = (data) => {
+  const option = {
+    url: urls.queryOrders,
+    post: true
+  }
+  return checkMock(option, data, 'queryOrders')
 }
 
 interface uploadOption {

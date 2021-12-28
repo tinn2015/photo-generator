@@ -204,7 +204,7 @@ class PostAddress extends Component {
     const {order} = this.props.photoStore
     const {optionServiceChecked} = this.state
     const params = {
-      job_id: this.props.photoStore.photoInfo.id,
+      job_id: this.props.photoStore.previewInfo.job_id,
       openid: this.props.userStore.userInfo.openId,
       amount: optionServiceChecked ? order.price + order.opt_price : order.price,
       opt_service: optionServiceChecked ? 1 : 0

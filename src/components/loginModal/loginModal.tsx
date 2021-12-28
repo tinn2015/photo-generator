@@ -33,17 +33,26 @@ class LoginModal extends Component {
   componentDidMount () {
     Taro.checkSession({
       success: () => {
+        console.log('checkSession success')
         this.props.userStore.getUserInfoFromStorage()
-        this.setState({
-          isOpened: false
-        })
+        if (this.props.userStore.userInfo) {
+          this.setState({
+            isOpened: false
+          })
+        } else {
+          this.setState({
+            isOpened: true
+          })
+        }
       },
       fail: () => {
+        console.log('checkSession fail')
         this.setState({
           isOpened: true
         })
       }
     })
+    console.log('Taro.getUserProfile', Taro.getUserProfile)
     // @ts-ignore
     if (Taro.getUserProfile) {
       this.setState({

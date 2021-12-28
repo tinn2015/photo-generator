@@ -1,6 +1,7 @@
 import {Component} from 'react'
 import {View, Input} from '@tarojs/components'
 import Taro from '@tarojs/taro'
+import { Photo } from '../../store/photo'
 // import { debounce } from '@/utils/index'
 
 
@@ -12,6 +13,7 @@ interface CommonSearch {
   },
   props: {
     searchTip?: string
+    photoStore: Photo
   }
 }
 
@@ -21,6 +23,7 @@ class CommonSearch extends Component {
   }
 
   routerToSearch = () => {
+    this.props.photoStore.setHotKey('')
     Taro.navigateTo({
       url: '/pages/searchResult/searchResult'
     })

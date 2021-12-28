@@ -32,8 +32,8 @@ class Goods extends Component {
     return (
       <ScrollView scrollY className='search-goods flex fd-c jc-c ai-c'>
         <View className='ads'>
-          <Image className='ad-img' mode='scaleToFill' src={ad.img} />
-          <View className='ad-label c-fff ft24'>{ad.desc}</View>
+          <Image className='ad-img' mode='scaleToFill' src={ad.icon} />
+          <View className='ad-label c-fff ft24'>{ad.name}</View>
         </View>
         <View className='goods w-100'>
           {
