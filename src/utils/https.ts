@@ -19,7 +19,7 @@ const urls:Record<string, string> = {
   normalQuestion: baseUrl + 'me/get_normal_question',
   getMyBalance: baseUrl + 'me/get_goods_detail',
   getMyAddress: baseUrl + 'me/get_my_address',
-  pointsRecord: baseUrl + 'me/get_points_detail',
+  pointsRecord: baseUrl + 'me/get_points_history',
   queryOrders: baseUrl + 'me/query_pay_order',
 }
 

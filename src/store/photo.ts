@@ -52,6 +52,8 @@ export class Photo {
 
   @observable order: Order
 
+  @observable payResult: boolean = true
+
   // @computed get name () {
   //   if (this.name) {}
   //   return this.name + '这是一个fullname'
@@ -110,14 +112,22 @@ export class Photo {
       Taro.requestPayment({
         timeStamp: payInfo.timeStamp,
         nonceStr: payInfo.nonceStr,
-        package: payInfo.prepayId,
+        package: payInfo.package,
         signType: payInfo.signType,
         paySign: payInfo.paySign,
         success: (res) => {
           console.log('paySuccess', res)
+          this.payResult = true
+          Taro.switchTab({
+            url: 'pages/payResult/payResult'
+          })
         },
         fail: (res) => {
           console.log('payError', res)
+          this.payResult = false
+          Taro.switchTab({
+            url: 'pages/payResult/payResult'
+          })
         }
       })
     })
