@@ -58,7 +58,7 @@ class HotNav extends Component {
         {
           searchHotKeys.length && searchHotKeys.map(item => {
             return (
-              <View className='nav-item flex jc-sb ai-c' key={item} onClick={() => {this.navSelected(item)}}>
+              <View className='nav-item flex jc-sb ai-c ft28' key={item} onClick={() => {this.navSelected(item)}}>
                 <View className={selected === item ? 'nav-default-box nav-selected-bg' : 'bg-fff nav-default-box'}></View>
                 <View className={selected === item ? 'nav-label nav-label-selected' : 'nav-label'}>{item}</View>
               </View>

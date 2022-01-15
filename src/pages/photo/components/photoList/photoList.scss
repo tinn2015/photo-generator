@@ -31,7 +31,8 @@
     margin-top: 50px;
     .photo-list-item {
       height: 180px;
-      background: #e1f1f3;
+      // background: #e1f1f3;
+      background: rgb(38, 208, 206, 0.2);
       border-radius: 16px;
       padding: 0 20px;
       margin-top: 20px;
@@ -50,14 +51,15 @@
         .list-item-tip {
           font-size: 24px;
           color: #fff;
-          background: $global-bg;
+          // background: $global-bg;
+          background: rgb(4, 99, 143, 0.7);
           padding: 2px 15px;
           border-radius: 16px;
           width: 130px;
           text-align: center;
         }
         .list-item-size {
-          font-size: 24px;
+          font-size: 20px;
           color: #e26418
         }
       }

@@ -1,17 +1,20 @@
 import { Component } from 'react'
-import { View, Image } from '@tarojs/components'
+import { View, Image, RadioGroup, Radio } from '@tarojs/components'
 import Taro from '@tarojs/taro'
 import { getPhotoDetail, upload } from '@/utils/https'
-import { AtButton, AtToast } from 'taro-ui'
+import { AtButton, AtToast, AtInput, AtRadio } from 'taro-ui'
 import { observer, inject } from 'mobx-react'
 import { Photo, PreviewInfo, PhotoDetailType } from '../../store/photo'
 
-import './photoDetail.scss'
+import './customSize.scss'
 
-interface PhotoDetail {
+interface customSize {
   state: {
     photoDetail: PhotoDetailType,
-    loading: boolean
+    loading: boolean,
+    height: string | undefined,
+    width: string | undefined,
+    unit: string
   }
   props: {
     photoStore: Photo
@@ -19,10 +22,13 @@ interface PhotoDetail {
 }
 @inject('photoStore')
 @observer
-class PhotoDetail extends Component {
+class customSize extends Component {
   constructor (props) {
     super(props)
     this.state = {
+      unit: 'mm',
+      height: undefined,
+      width: undefined,
       photoDetail: {
         example_show: {
           img: '',
@@ -60,6 +66,13 @@ class PhotoDetail extends Component {
   }
 
   getPhoto = (type) => {
+    const {width, height} = this.state
+    if (!width && !height ) {
+      Taro.showToast({
+        title: '请输入照片尺寸'
+      })
+      return
+    }
     Taro.chooseImage({
       count: 1,
       sizeType: ['original'],
@@ -98,12 +111,17 @@ class PhotoDetail extends Component {
     // })
     const {id} = this.props.photoStore.photoInfo
     const {bg_color} = this.props.photoStore.photoDetail
+    const { unit, height, width } = this.state
+
     const bgColor = bg_color.map((i) => {
        return i.replace('#', '')
     })
+
+    const key = `size_${unit}`
+
     upload({
       path,
-      data: {'bg-color': bgColor.join(','), mid: id}
+      data: {'bg-color': bgColor.join(','), mid: id, [key]: `${width}x${height}`}
     }).then((res: PreviewInfo) => {
       // debugger
       console.log('jobCreate', res)
@@ -120,52 +138,34 @@ class PhotoDetail extends Component {
     })
   }
 
+  unitChange = (e) => {
+    this.setState({
+      unit: e
+    })
+  }
+
+  getPhotoHeight = (e) => {
+    console.log('height', e, typeof e)
+    this.setState({
+      height: e
+    })
+    return e
+  }
+
+  getPhotoWidth = (e) => {
+    this.setState({
+      width: e
+    })
+    return e
+  }
+
   render () {
-    const { photoDetail, loading } = this.state
+    const { photoDetail, loading, unit } = this.state
     const { example_show:preview } = photoDetail
-    const changebg = false
     return(
-      <View className='photo-detail h-100'>
-        {
-          changebg ? <View>换背景</View> :
-          <View>
-            <View className='take-pic-tip bg-fff flex jc-sb ai-c'>
-              <Image className='preview' src={preview.img || ''} />
-              <View className='take-pic-desc flex fd-c jc-ad ai-fs'>
-                {
-                  preview.desc && preview.desc.length && preview.desc.map(item => {
-                    return (
-                      <View className='desc-item flex jc-c ai-c' key={item}>
-                        <Image className='icon' src={preview.icon} />
-                        <View className='item ft24 c-333'>{item}</View>
-                      </View>
-                    )
-                  })
-                }
-              </View>
-            </View>
-            <View className='photo-info bg-fff'>
-              <View className='photo-title'>{photoDetail.title}</View>
-              <View className='desc'>
-              {
-                photoDetail.desc && photoDetail.desc.length && photoDetail.desc.map(desc => {
-                  return (
-                    <View key={desc} className='ft24 c-333 item'>{desc}</View>
-                  )
-                })
-              }
-                <View className='ft24 c-333 item flex ai-c'>
-                  背景色：{
-                    photoDetail.bg_color && photoDetail.bg_color.length && photoDetail.bg_color.map(color => {
-                      return <View key={color} className='color' style={{"background": color}}></View>
-                    })
-                  }
-                </View>
-              </View>
-            </View>
-          </View>
-        }
-        {/* <View>
+      <View className='custom-size h-100 bg-gray'>
+        <View>
+          {/* 请上传照片（这里样式后面补齐） */}
           <View className='take-pic-tip bg-fff flex jc-sb ai-c'>
             <Image className='preview' src={preview.img || ''} />
             <View className='take-pic-desc flex fd-c jc-ad ai-fs'>
@@ -182,7 +182,7 @@ class PhotoDetail extends Component {
             </View>
           </View>
           <View className='photo-info bg-fff'>
-            <View className='photo-title'>{photoDetail.title}</View>
+            <View className='photo-title ft28 c-333'>{photoDetail.title}</View>
             <View className='desc'>
             {
               photoDetail.desc && photoDetail.desc.length && photoDetail.desc.map(desc => {
@@ -200,8 +200,38 @@ class PhotoDetail extends Component {
               </View>
             </View>
           </View>
-        </View> */}
-        <View className='photo-detail-handles common-handles flex jc-c ai-c'>
+          <View className='size-info bg-fff'>
+            <View className='ft28 c-333'>选择单位</View>
+            <View className='size-input'>
+              <RadioGroup className='radio-group'>
+                <Radio value='mm' checked={unit === 'mm'} className='ft24' onClick={this.unitChange}>mm</Radio>
+                <Radio value='px' checked={unit === 'px'} className='ft24' style='margin-left: 20px' onClick={this.unitChange}>px</Radio>
+              </RadioGroup>
+              <View className='flex jc-c ai-c'>
+                <AtInput
+                  name='width'
+                  required
+                  type='number'
+                  onChange={this.getPhotoWidth.bind(this)}
+                  className='text-center input c-333 ft24'
+                  value={this.state.width}
+                  placeholder='请输入照片宽111'
+                />
+                X
+                <AtInput
+                  name='height'
+                  required
+                  type='number'
+                  value={this.state.height}
+                  className='text-center input c-333 ft24'
+                  onChange={this.getPhotoHeight}
+                  placeholder='请输入照片长'
+                />
+            </View>
+            </View>
+          </View>
+        </View>
+        <View className='common-handles photo-detail-handles flex jc-ad ai-c'>
           <AtButton type='secondary' className='button' onClick={() => {this.getPhoto('album')}}>相册选择</AtButton>
           <AtButton type='primary' className='button' onClick={() => {this.getPhoto('camera')}}>开始拍摄</AtButton>
         </View>
@@ -211,4 +241,4 @@ class PhotoDetail extends Component {
   }
 }
 
-export default PhotoDetail
+export default customSize

@@ -10,15 +10,17 @@
       flex-basis: 10px;
     }
     .nav-selected-bg {
-      background: $global-bg;
+      // background: $global-bg;
+      background: rgb(4, 99, 143, 0.7);
     }
     .nav-label {
       flex: 1;
-      font-size: 30px;
-      padding-left: 40px;
+      padding-left: 10px;
+      color: #333
     }
     .nav-label-selected {
-      color: $global-bg
+      // color: $global-bg
+      color: rgb(4, 99, 143, 0.7)
     }
   }
 }

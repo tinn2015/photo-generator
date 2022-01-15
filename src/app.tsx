@@ -18,6 +18,7 @@ const store = {
 class App extends Component {
 
   componentDidMount () {
+    console.log('this.config', this)
   }
 
   componentDidShow () {

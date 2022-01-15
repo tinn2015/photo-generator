@@ -1,6 +1,5 @@
-.photo-detail {
+.custom-size {
   // background: #eee;
-  background: linear-gradient(to left, rgb(142, 158, 171), rgb(238, 242, 243));
   overflow: hidden;
   padding: 30px 20px;
   height: 100vh;
@@ -48,10 +47,27 @@
     }
   }
 
+  .size-info {
+    margin-top: 30px;
+    border-radius: 20px;
+    padding: 20px;
+    .radio-group {
+      margin-left: 48px;
+    }
+    .at-radio__title {
+      font-size: 24px;
+    }
+    .size-input {
+      margin-top: 20px;
+    }
+    .at-input input {
+      font-size: 24px;
+    }
+  }
+
   .photo-detail-handles {
     position: fixed;
     bottom: 0;
-    width: 100%;
-    left: 0
+    left: 0;
   }
 }

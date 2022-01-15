@@ -1,6 +1,7 @@
 @import '../../global.scss';
 .my-container {
-  background: $global-bg;
+  // background: $global-bg;
+  background: linear-gradient(to right, rgb(4, 99, 143), rgb(38, 208, 206));
   height: 100vh;
   .my-top-header {
     height: 450px;
@@ -20,6 +21,7 @@
   .my-content {
     border-radius: 40px 40px 0 0;
     background: #eee;
+    // background: linear-gradient(to left, rgb(142, 158, 171), rgb(238, 242, 243));
     height: 100%;
     flex: 1;
     padding: 20px;

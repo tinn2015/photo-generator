@@ -6,9 +6,9 @@ import { createPayOrder } from '../utils/https'
 export interface PhotoInfo {
   id: string,
   title: string,
-  img: string,
-  desc: Array<string>,
-  bg_color: Array<string>
+  img?: string,
+  desc?: Array<string>,
+  bg_color?: Array<string>
 }
 
 export interface PreviewInfo {

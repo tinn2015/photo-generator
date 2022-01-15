@@ -10,6 +10,7 @@
 @import "~taro-ui/dist/style/components/modal.scss";
 @import "~taro-ui/dist/style/components/badge.scss";
 @import "~taro-ui/dist/style/components/tabs.scss";
+@import "~taro-ui/dist/style/components/radio.scss";
 
 @import'./global.scss';
 
@@ -107,4 +108,24 @@ view {
 
 .text-center {
   text-align: center;
+}
+
+.common-handles {
+  height: 200px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  .button {
+    width: 300px
+  }
+  .at-button {
+    margin: 0
+  }
+}
+.bg-gray {
+  background: linear-gradient(to left, rgb(142, 158, 171), rgb(238, 242, 243));
+}
+.bg-blue {
+  background: linear-gradient(to right, rgb(4, 99, 143), rgb(38, 208, 206))
 }

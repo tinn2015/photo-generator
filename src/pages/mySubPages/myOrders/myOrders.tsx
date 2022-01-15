@@ -4,6 +4,7 @@ import { getCurrentInstance } from '@tarojs/taro'
 import { AtTabs, AtTabsPane } from 'taro-ui'
 import { inject } from 'mobx-react'
 import { queryOrders } from '@/https'
+import { formatTime } from '@/utils'
 import { User } from '../../../store/user'
 
 import './myOrders.scss'
@@ -11,7 +12,7 @@ import './myOrders.scss'
 interface good {
   job_id: string
   amount: number
-  state: number
+  state: number // 0完成，1等待付款，2超时，其他
   expired_time: string
   create_time: string
   desc: string
@@ -73,20 +74,6 @@ class MyOrders extends Component {
     })
   }
 
-  formatTime (timeString) {
-    const time = new Date(timeString)
-    let year: string | number = time.getFullYear()
-    let month: string | number = time.getMonth() + 1
-    let day: string | number = time.getDate()
-    let hour: string | number = time.getHours()
-    let minute: string | number = time.getMinutes()
-    month = month < 10 ? `0${month}` : month
-    day = day < 10 ? `0${day}` : day
-    hour = hour < 10 ? `0${hour}` : hour
-    minute = minute < 10 ? `0${minute}` : minute
-    return `${year}/${month}/${day} ${hour}:${minute}`
-  }
-
   render () {
     const { currentTab, needPayList, allOrders} = this.state
     const tabList = [{ title: '全部' }, { title: '待支付' }]
@@ -95,25 +82,43 @@ class MyOrders extends Component {
         <AtTabs current={currentTab} tabList={tabList} onClick={this.handleClick.bind(this)}>
           <AtTabsPane current={currentTab} index={0} >
           {
-              allOrders.length && allOrders.map(order => {
+              allOrders.length ? allOrders.map(order => {
                 return (
                   <View className='order' key={order.key}>
-                    <View className='start-time'>{this.formatTime(order.create_time)}</View>
-                    <View className='flex jc-sb ai-c'>
-                      <Image src={order.img} />
-                      <View>{order.desc}</View>
+                    <View className='start-time c-333 ft28'>{formatTime(order.create_time)}</View>
+                    <View className='flex jc-sb ai-c good-info'>
+                      <Image className='good-img' mode='aspectFit' src={order.img} />
+                      <View className='good-desc'>{order.desc}</View>
                     </View>
                     <View className='flex jc-sb ai-c'>
-                      <View>实付款：{order.amount}</View>
-                      <View>去付款</View>
+                      <View className='ft24 c-333 flex jc-c ai-c'>实付款：<View className='c-ff5722 ft28'>￥{order.amount}</View></View>
+                      {
+                        order.state === 1 ? <View className='c-fff btn ft24'>去付款</View> : <View className='c-fff done-btn ft24'>已完成</View>
+                      }
+                    </View>
+                  </View>
+                )
+              }) : ''
+            }
+          </AtTabsPane>
+          <AtTabsPane current={currentTab} index={1}>
+          {
+              needPayList.length && allOrders.map(order => {
+                return (
+                  <View className='order' key={order.key}>
+                    <View className='start-time c-333 ft28'>{formatTime(order.create_time)}</View>
+                    <View className='flex jc-sb ai-c good-info'>
+                      <Image className='good-img' mode='aspectFit' src={order.img} />
+                      <View className='good-desc'>{order.desc}</View>
+                    </View>
+                    <View className='flex jc-sb ai-c'>
+                      <View className='ft24 c-333 flex jc-c ai-c'>实付款：<View className='c-ff5722 ft28'>￥{order.amount}</View></View>
+                      <View className='c-fff btn ft24'>去付款</View>
                     </View>
                   </View>
                 )
               })
             }
-          </AtTabsPane>
-          <AtTabsPane current={currentTab} index={1}>
-            2
           </AtTabsPane>
         </AtTabs>
       </View>

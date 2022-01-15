@@ -1,17 +1,33 @@
 @import '../../../global';
 .my-orders {
-  padding: 0 40px;
-  .balance-item {
+  padding: 0 40px 40px;
+  .order {
     width: 100%;
     margin-top: 20px;
     border-radius: 16px;
-    height: 120px;
-    background: $global-bg;
-    .balance-item-left {
-      width: 150px;
+    padding: 0 20px 20px;
+    // background: #e6e6e6;
+    background: linear-gradient(to left, rgb(97, 97, 97, 0.5), rgb(155, 197, 195, 0.5));
+    .start-time {
+      border-bottom: 1px solid #fff;
+      padding: 20px;
     }
-    .balance-item-right {
-      flex-grow: 1;
+    .good-info {
+      padding: 15px 0;
+    }
+    .good-img {
+      width: 200px;
+      height: 220px;
+    }
+    .btn {
+      padding: 10px 20px;
+      border-radius: 25px;
+      background: #ff5722
+    }
+    .done-btn {
+      padding: 10px 20px;
+      border-radius: 25px;
+      background: rgba(76, 163, 226, 0.6)
     }
   }
 }

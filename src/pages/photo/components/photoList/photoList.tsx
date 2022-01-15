@@ -63,7 +63,7 @@ class PhotoList extends Component {
                 <View className='list-item-info flex fd-c jc-ad'>
                   <View className='list-item-title'>{item.title}</View>
                   <View className='list-item-tip'>{item.desc[0]}</View>
-                  <View className='list-item-size'>{item.desc[1]}</View>
+                  <View className='list-item-size ft20'>{item.desc[1]}</View>
                 </View>
               </View>
             })

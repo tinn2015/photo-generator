@@ -92,7 +92,7 @@ class SearchResult extends Component {
   render () {
     const { searchKey, searchTip, hotKeys, searchResultAds, searchResultGoods } = this.state
     return (
-      <View className='search-result flex fd-c jc-c ai-c'>
+      <View className='search-result flex fd-c jc-c ai-c bg-blue'>
         <View className='search bg-fff'>
           <Input
             className='search-input c-333'

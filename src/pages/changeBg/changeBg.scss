@@ -1,0 +1,99 @@
+.change-bg {
+  // background: #eee;
+  overflow: hidden;
+  // padding: 0px 20px;
+  height: 100vh;
+  .preview-box {
+    min-height: 400px;
+    padding: 40px;
+    // border-radius: 30px;
+    image {
+      border-radius: 16px;
+      // width: 320px;
+      // height: 560px;
+    }
+  }
+  .change-handles {
+    padding: 20px;
+    margin-top: 20px;
+    .generatephoto-icon {
+      width: 40px;
+      height: 40px;
+    }
+    .generatephoto-label {
+      margin-left: 20px;
+      // color: $global-bg;
+    }
+    .generatephoto-colors {
+      margin-top: 40px;
+      .color-item-box {
+        padding-bottom: 20px;
+        // border-bottom: 5px solid none
+        border-radius: 2px;
+      }
+      .color-item {
+        width: 60px;
+        height: 60px;
+        border-radius: 30px;
+        box-shadow: 0px 5px 10px 10px rgba(85, 85, 85, 0.1);
+        border: 1px solid #eee;
+      }
+    }
+    .change-handles-btn {
+      margin-top: 80px;
+    }
+  }
+  // .take-pic-tip {
+  //   height: 380px;
+  //   border-radius: 20px;
+  //   padding: 0 20px;
+  //   .preview {
+  //     width: 200px;
+  //     height: 300px;
+  //     border-radius: 16px;
+  //   }
+  //   .take-pic-desc {
+  //     padding: 40px 20px;
+  //     flex-grow: 1;
+  //     height: 100%;
+  //     .desc-item {
+  //       .icon {
+  //         width: 40px;
+  //         height: 40px;
+  //         border-radius: 50%;
+  //       }
+  //       .item {
+  //         margin-left: 10px;
+  //       }
+  //     }
+  //   }
+  // }
+
+  // .photo-info {
+  //   margin-top: 30px;
+  //   border-radius: 20px;
+  //   padding: 20px;
+  //   .desc {
+  //     margin-top: 20px;
+  //     .item {
+  //       margin-top:10px;
+  //       .color {
+  //         width: 40px;
+  //         height: 40px;
+  //         border-radius: 50%;
+  //         margin-right: 10px;
+  //       }
+  //     }
+  //   }
+  // }
+
+  .photo-detail-handles {
+    height: 200px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    .button {
+      width: 300px
+    }
+  }
+}

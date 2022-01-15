@@ -1,16 +1,19 @@
 @import '../../global.scss';
 .home {
   font-size: 28rpx;
-  background: $global-bg;
+  // background: $global-bg;
+  background: linear-gradient(to right, rgb(4, 99, 143), rgb(38, 208, 206));
   min-height: 100vh;
   .title {
-    position: fixed;
+    position: absolute;
     // top: 48px;
     height: 64px;
     width: 300px;
     border-radius: 32px;
     left: 20px;
-    background: rgba(0,0,0,0.1);
+    // background: rgba(0, 0, 0, 0.5);
+    background: rgba(255, 255, 255);
+    color: rgb(4, 99, 143);
     z-index: 100;
   }
 }

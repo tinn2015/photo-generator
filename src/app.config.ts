@@ -1,6 +1,6 @@
 export default {
   pages: [
-    'pages/payResult/payResult',
+    // 'pages/mySubPages/myOrders/myOrders',
     'pages/home/home',
     'pages/searchResult/searchResult',
     'pages/generatePhoto/generatePhoto',
@@ -8,7 +8,9 @@ export default {
     'pages/photo/photo',
     'pages/postAddress/postAddress',
     'pages/photoDetail/photoDetail',
-    // 'pages/payResult/payResult',
+    'pages/changeBg/changeBg',
+    'pages/customSize/customSize',
+    'pages/payResult/payResult',
     'pages/mySubPages/channelCooperation/channelCooperation',
     'pages/mySubPages/myBalance/myBalance',
     'pages/mySubPages/myOrders/myOrders',

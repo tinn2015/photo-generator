@@ -3,6 +3,7 @@ import { View } from '@tarojs/components'
 import { AtTabs, AtTabsPane } from 'taro-ui'
 import { inject } from 'mobx-react'
 import { getMyBalance } from '@/https'
+import { formatTime } from '@/utils/index'
 import { User } from '../../../store/user'
 
 import './myBalance.scss'
@@ -77,6 +78,18 @@ class MyBalance extends Component {
     })
   }
 
+  getItemView = (i) => {
+    return (
+      <View key={i.key} className='balance-item flex jc-c ai-c'>
+        <View className='c-fff balance-item-left text-center'>￥{i.amount}</View>
+        <View className='c-fff balance-item-right text-center'>
+          <View className='ft24'>{i.desc}</View>
+          <View className='ft24'>{`${formatTime(i.start)} ~ ${formatTime(i.expired)}`}</View>
+        </View>
+      </View>
+    )
+  }
+
   render () {
     const { currentTab, notUsedList, usedList, expiredList } = this.state
     const tabList = [{ title: '未使用' }, { title: '已使用' }, { title: '已过期' }]
@@ -86,45 +99,21 @@ class MyBalance extends Component {
           <AtTabsPane current={currentTab} index={0} >
             {
               notUsedList.map(i => {
-                return (
-                  <View key={i.key} className='balance-item flex jc-c ai-c'>
-                    <View className='c-fff balance-item-left text-center'>￥{i.amount}</View>
-                    <View className='c-fff balance-item-right text-center'>
-                      <View className='ft24'>{i.desc}</View>
-                      <View className='ft24'>{`${i.start} ~ ${i.expired}`}</View>
-                    </View>
-                  </View>
-                )
+                return this.getItemView(i)
               })
             }
           </AtTabsPane>
           <AtTabsPane current={currentTab} index={1}>
             {
                 usedList.map(i => {
-                  return (
-                    <View key={i.key} className='balance-item flex jc-c ai-c'>
-                      <View className='c-fff balance-item-left text-center'>￥{i.amount}</View>
-                      <View className='c-fff balance-item-right text-center'>
-                        <View className='ft24'>{i.desc}</View>
-                        <View className='ft24'>{`${i.start} ~ ${i.expired}`}</View>
-                      </View>
-                    </View>
-                  )
+                  return this.getItemView(i)
                 })
               }
           </AtTabsPane>
           <AtTabsPane current={currentTab} index={2}>
             {
                 expiredList.map(i => {
-                  return (
-                    <View key={i.key} className='balance-item flex jc-c ai-c'>
-                      <View className='c-fff balance-item-left text-center'>￥{i.amount}</View>
-                      <View className='c-fff balance-item-right text-center'>
-                        <View className='ft24'>{i.desc}</View>
-                        <View className='ft24'>{`${i.start} ~ ${i.expired}`}</View>
-                      </View>
-                    </View>
-                  )
+                  return this.getItemView(i)
                 })
               }
           </AtTabsPane>

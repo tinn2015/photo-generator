@@ -1,11 +1,14 @@
 import { Component } from 'react'
+import Taro from '@tarojs/taro'
 import { View, Swiper, SwiperItem, Image } from '@tarojs/components'
+import { Photo } from '../../../../store/photo'
 
 
 import './banner.scss'
 
 interface Banner {
   props: {
+    photoStore: Photo
     bannerBg: Array<Record<string, string>>
     bannerBtn: Array<Record<string, string>>
   }
@@ -16,6 +19,43 @@ class Banner extends Component {
 
   bannerTab = (url: string) => {
     window.open(url)
+  }
+
+  tabBtn = (item) => {
+    const { photoStore } = this.props
+    switch (item.type) {
+      case 'create_photos':
+        console.log('制作证件照');
+        Taro.switchTab({
+          url: '/pages/photo/photo'
+        })
+        break;
+      case 'hots_size':
+        Taro.navigateTo({
+          url: '/pages/searchResult/searchResult'
+        })
+        break
+      case 'change_colors':
+        photoStore.setPhotoInfo({
+          title: item.name,
+          id: item.goods_id
+        })
+        Taro.navigateTo({
+          url: '/pages/changeBg/changeBg'
+        })
+        break
+      case 'custom_size':
+        photoStore.setPhotoInfo({
+          title: item.name,
+          id: item.goods_id
+        })
+        Taro.navigateTo({
+          url: '/pages/customSize/customSize'
+        })
+        break
+      default:
+        console.log(item)
+    }
   }
 
   render () {
@@ -48,7 +88,7 @@ class Banner extends Component {
           {
             bannerBtn.map(item => {
               return (
-                <View className='tab-item flex fd-c jc-c ai-c' key={item.icon}>
+                <View className='tab-item flex fd-c jc-c ai-c' key={item.icon} onClick={() => {this.tabBtn(item)}}>
                   <Image
                     className='tab-icon w-100 h-100'
                     mode='scaleToFill'
