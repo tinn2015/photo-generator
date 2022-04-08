@@ -178,6 +178,7 @@ interface uploadOption {
 
 export const upload = function (uploadOption: uploadOption) {
   return new Promise((resolve, reject) => {
+    console.log('jobcreateparams', uploadOption)
     Taro.uploadFile({
       url: urls.photoCreate,
       filePath: uploadOption.path,

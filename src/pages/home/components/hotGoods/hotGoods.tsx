@@ -62,7 +62,7 @@ class HotGoods extends Component {
             })
           }
         </View>
-        <View className='hot-goods-endline flex jc-c ai-c'>
+        <View className='hot-goods-endline flex jc-c ai-c ft24'>
           我是底线～
         </View>
       </View>

@@ -69,6 +69,7 @@ class customSize extends Component {
     const {width, height} = this.state
     if (!width && !height ) {
       Taro.showToast({
+        icon: 'none',
         title: '请输入照片尺寸'
       })
       return
@@ -125,6 +126,7 @@ class customSize extends Component {
     }).then((res: PreviewInfo) => {
       // debugger
       console.log('jobCreate', res)
+      this.getPhotoDetail()
       const { photoStore } = this.props
       photoStore.setPreviewInfo(res)
       Taro.navigateTo({
@@ -139,6 +141,8 @@ class customSize extends Component {
   }
 
   unitChange = (e) => {
+    const {photoStore} = this.props
+    photoStore.setCustomSize('unit', e)
     this.setState({
       unit: e
     })
@@ -146,6 +150,8 @@ class customSize extends Component {
 
   getPhotoHeight = (e) => {
     console.log('height', e, typeof e)
+    const {photoStore} = this.props
+    photoStore.setCustomSize('height', e)
     this.setState({
       height: e
     })
@@ -153,6 +159,8 @@ class customSize extends Component {
   }
 
   getPhotoWidth = (e) => {
+    const {photoStore} = this.props
+    photoStore.setCustomSize('width', e)
     this.setState({
       width: e
     })
@@ -204,8 +212,8 @@ class customSize extends Component {
             <View className='ft28 c-333'>选择单位</View>
             <View className='size-input'>
               <RadioGroup className='radio-group'>
-                <Radio value='mm' checked={unit === 'mm'} className='ft24' onClick={this.unitChange}>mm</Radio>
-                <Radio value='px' checked={unit === 'px'} className='ft24' style='margin-left: 20px' onClick={this.unitChange}>px</Radio>
+                <Radio value='mm' checked={unit === 'mm'} className='ft24' onClick={() => this.unitChange('mm')}>mm</Radio>
+                <Radio value='px' checked={unit === 'px'} className='ft24' style='margin-left: 20px' onClick={() => this.unitChange('px')}>px</Radio>
               </RadioGroup>
               <View className='flex jc-c ai-c'>
                 <AtInput
@@ -215,7 +223,7 @@ class customSize extends Component {
                   onChange={this.getPhotoWidth.bind(this)}
                   className='text-center input c-333 ft24'
                   value={this.state.width}
-                  placeholder='请输入照片宽111'
+                  placeholder='请输入照片宽'
                 />
                 X
                 <AtInput

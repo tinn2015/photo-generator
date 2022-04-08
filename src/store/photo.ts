@@ -38,6 +38,12 @@ export interface Order {
   price: number,
   opt_price: number
 }
+export interface CustomSize {
+  isCustom: boolean
+  unit: string,
+  width: string,
+  height: string
+}
 
 export class Photo {
   @observable photoPath: string
@@ -53,6 +59,13 @@ export class Photo {
   @observable order: Order
 
   @observable payResult: boolean = true
+
+  @observable customSize: CustomSize = {
+    isCustom: false,
+    unit: 'mm',
+    width: '',
+    height: ''
+  }
 
   // @computed get name () {
   //   if (this.name) {}
@@ -82,6 +95,11 @@ export class Photo {
       price: obj.ele_price,
       opt_price: obj.ele_opt_price
     }
+  }
+
+  @action setCustomSize (key, value: string | boolean) {
+    console.log(key, value)
+    this.customSize[key] = value
   }
 
   // 设置订单类型 1->电子照  2->冲印包邮到家

@@ -45,6 +45,7 @@ class Banner extends Component {
         })
         break
       case 'custom_size':
+        photoStore.setCustomSize('isCustom', true)
         photoStore.setPhotoInfo({
           title: item.name,
           id: item.goods_id

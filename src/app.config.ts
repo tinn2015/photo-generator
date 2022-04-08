@@ -28,20 +28,20 @@ export default {
   tabBar: {
     // custom: true,
     color: "#333333",
-    selectedColor: "#69c0ff",
+    selectedColor: "#0d96d6",
     backgroundColor: "#fff",
     borderStyle: 'black',
     list: [
       {
         pagePath: 'pages/home/home',
-        iconPath: 'assets/tabBar/home.png',
-        selectedIconPath: 'assets/tabBar/home-selected.png',
+        iconPath: 'assets/tabBar/store.png',
+        selectedIconPath: 'assets/tabBar/store-selected.png',
         text: '首页'
       },
       {
         pagePath: 'pages/photo/photo',
-        iconPath: 'assets/tabBar/photo.png',
-        selectedIconPath: 'assets/tabBar/photo-selected.png',
+        iconPath: 'assets/tabBar/all.png',
+        selectedIconPath: 'assets/tabBar/all-selected.png',
         text: '证件照'
       },
       // {
@@ -52,8 +52,8 @@ export default {
       // },
       {
         pagePath: 'pages/my/my',
-        iconPath: 'assets/tabBar/my.png',
-        selectedIconPath: 'assets/tabBar/my-selected.png',
+        iconPath: 'assets/tabBar/smile.png',
+        selectedIconPath: 'assets/tabBar/smile-selected.png',
         text: '我的'
       }
     ]

@@ -86,9 +86,9 @@ class MyOrders extends Component {
                 return (
                   <View className='order' key={order.key}>
                     <View className='start-time c-333 ft28'>{formatTime(order.create_time)}</View>
-                    <View className='flex jc-sb ai-c good-info'>
+                    <View className='flex jc-fa ai-c good-info'>
                       <Image className='good-img' mode='aspectFit' src={order.img} />
-                      <View className='good-desc'>{order.desc}</View>
+                      <View className='good-desc c-333 ft28'>{order.desc}</View>
                     </View>
                     <View className='flex jc-sb ai-c'>
                       <View className='ft24 c-333 flex jc-c ai-c'>实付款：<View className='c-ff5722 ft28'>￥{order.amount}</View></View>
@@ -107,7 +107,7 @@ class MyOrders extends Component {
                 return (
                   <View className='order' key={order.key}>
                     <View className='start-time c-333 ft28'>{formatTime(order.create_time)}</View>
-                    <View className='flex jc-sb ai-c good-info'>
+                    <View className='flex jc-fa ai-c good-info'>
                       <Image className='good-img' mode='aspectFit' src={order.img} />
                       <View className='good-desc'>{order.desc}</View>
                     </View>

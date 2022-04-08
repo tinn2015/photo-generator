@@ -65,6 +65,8 @@ class Home extends Component {
 
   componentDidShow () {
     const rect = getMenuButtonBoundingClientRect()
+    const { photoStore } = this.props
+    photoStore.setCustomSize('isCustom', false)
     console.log('show', rect)
     this.setState({
       menuButtonRect: rect

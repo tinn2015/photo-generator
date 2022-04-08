@@ -37,6 +37,7 @@ class GeneratePhoto extends Component {
 
   componentDidMount () {
     const {photoStore: {previewInfo: { preview }}} = this.props
+    console.log('customSize', this.props.photoStore.customSize)
     const colorList = Object.keys(preview)
     this.setState({
       colorList,
@@ -66,7 +67,7 @@ class GeneratePhoto extends Component {
   render () {
     const {changeIconBg, openPopup, selectedBg, colorList} = this.state
     const { photoStore, userStore } = this.props
-    const {photoStore: {previewInfo: {preview }, photoDetail: {desc}}} = this.props
+    const {photoStore: {previewInfo: {preview }, photoDetail: {desc}, customSize}} = this.props
     return(
       <View className='generatePhoto-container flex fd-c jc-sb'>
         <View className='preview-box flex jc-c ai-c'>
@@ -74,6 +75,9 @@ class GeneratePhoto extends Component {
         </View>
         <View className='photo-size flex jc-c ai-c'>
           <View className='flex fd-c'>
+          {
+            customSize.isCustom && <View className='ft24 c-333'>照片尺寸: {customSize.width}x{customSize.height + customSize.unit}</View>
+          }
           {
             desc && desc.map(item => {
               return <View className='ft24 c-333' key={item}>{item}</View>

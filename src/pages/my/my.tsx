@@ -18,7 +18,15 @@ interface My {
     // 积分
     points: number,
     // 待支付
-    toBePaid: number
+    toBePaid: number,
+    allOrders: string,
+    feedback: string,
+    pointsHistory: string,
+    wallet: string,
+    trust: string,
+    map: string,
+    coupons: string,
+    question: string,
   }
   props: {
     userStore: User
@@ -31,8 +39,14 @@ class My extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      payment: require('../../assets/my/payment-active.png'),
-      orders: require('../../assets/my/orders-active.png'),
+      allOrders: require('../../assets/my/allOrders.png'),
+      feedback: require('../../assets/my/feedback.png'),
+      pointsHistory: require('../../assets/my/pointsHistory.png'),
+      wallet: require('../../assets/my/wallet.png'),
+      trust: require('../../assets/my/trust.png'),
+      map: require('../../assets/my/map.png'),
+      coupons: require('../../assets/my/coupons.png'),
+      question: require('../../assets/my/question.png'),
       balance: 0,
       couponCount: 0,
       points: 0,
@@ -94,9 +108,7 @@ class My extends Component {
   }
 
   render () {
-    const paymentIcon = this.state.payment
-    const { balance, couponCount, points, toBePaid } = this.state
-    const ordersIcon = this.state.orders
+    const { balance, couponCount, points, toBePaid, allOrders, feedback, pointsHistory, wallet, trust, map, coupons, question } = this.state
     const { userStore } = this.props
     const { userInfo = {
       avatarUrl: '',
@@ -129,13 +141,13 @@ class My extends Component {
             <View className='orders flex jc-ad ai-c'>
               <AtBadge value={toBePaid || undefined} maxValue={99}>
                 <View className='flex fd-c jc-c ai-c' onClick={() => {this.routerToMyOrders('needPay')}}>
-                  <View className='icon flex jc-c ai-c'><Image className='icon' mode='scaleToFill' src={paymentIcon} /></View>
+                  <View className='icon flex jc-c ai-c'><Image className='icon' mode='scaleToFill' src={wallet} /></View>
                   <View className='label ft20 c-333'>待支付</View>
                 </View>
               </AtBadge>
               <AtBadge value={toBePaid || undefined} maxValue={99}>
                 <View className='flex fd-c jc-c ai-c' onClick={() => {this.routerToMyOrders('all')}}>
-                  <View className='icon flex jc-c ai-c'><Image className='icon' mode='scaleToFill' src={ordersIcon} /></View>
+                  <View className='icon flex jc-c ai-c'><Image className='icon' mode='scaleToFill' src={allOrders} /></View>
                   <View className='label ft20 c-333'>全部订单</View>
                 </View>
               </AtBadge>
@@ -145,29 +157,29 @@ class My extends Component {
             <View className='services-title'>其他服务</View>
             <View className='services flex jc-ad ai-c'>
               <View className='flex fd-c jc-c ai-c' onClick={this.routerToMyBalance}>
-                <View className='icon flex jc-c ai-c'><Image className='icon' mode='scaleToFill' src={paymentIcon} /></View>
+                <View className='icon flex jc-c ai-c'><Image className='icon' mode='scaleToFill' src={coupons} /></View>
                 <View className='label ft20 c-333'>我的优惠券</View>
               </View>
               <View className='flex fd-c jc-c ai-c' onClick={this.routerToPointRecord}>
-                <View className='icon flex jc-c ai-c'><Image className='icon' mode='scaleToFill' src={paymentIcon} /></View>
+                <View className='icon flex jc-c ai-c'><Image className='icon' mode='scaleToFill' src={pointsHistory} /></View>
                 <View className='label ft20 c-333'>积分记录</View>
               </View>
               <View className='flex fd-c jc-c ai-c' onClick={this.routerToCooperation}>
-                <View className='icon flex jc-c ai-c'><Image className='icon' mode='scaleToFill' src={ordersIcon} /></View>
+                <View className='icon flex jc-c ai-c'><Image className='icon' mode='scaleToFill' src={trust} /></View>
                 <View className='label ft20 c-333'>渠道合作</View>
               </View>
             </View>
             <View className='services mt20 flex jc-ad ai-c'>
               <View className='flex fd-c jc-c ai-c' onClick={this.routerToAddress}>
-                <View className='icon flex jc-c ai-c'><Image className='icon' mode='scaleToFill' src={paymentIcon} /></View>
+                <View className='icon flex jc-c ai-c'><Image className='icon' mode='scaleToFill' src={map} /></View>
                 <View className='label ft20 c-333'>收货地址</View>
               </View>
               <View className='flex fd-c jc-c ai-c' onClick={this.routerToProblems}>
-                <View className='icon flex jc-c ai-c'><Image className='icon' mode='scaleToFill' src={paymentIcon} /></View>
+                <View className='icon flex jc-c ai-c'><Image className='icon' mode='scaleToFill' src={question} /></View>
                 <View className='label ft20 c-333'>常见问题</View>
               </View>
-              <Button openType='contact' className='open-contact flex fd-c jc-c ai-c' onClick={this.feedBack}>
-                <View className='icon flex jc-c ai-c'><Image className='icon' mode='scaleToFill' src={paymentIcon} /></View>
+              <Button openType='contact' className='open-contact flex fd-c jc-c ai-c'>
+                <View className='icon flex jc-c ai-c'><Image className='icon' mode='scaleToFill' src={feedback} /></View>
                 <View className='label ft20 c-333'>意见反馈</View>
               </Button>
             </View>
